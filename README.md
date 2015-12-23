@@ -40,6 +40,8 @@ Getting up & running with the repo depends on what you want to do. See below:
 * Replace the included MP3 with one of your own if you wish.
 * By default, the audio will play, and the tempo counter will start.
 * Clone `visualisers/HarpaTestVisualiser.js`, look at how it works, and create your own.
+* We have two channels, normalised 1-0. `1` is volume, `2` is 'beat value', which will peak at 1 on every 'beat'. 
+* This simulates the input from the audio analysis code, which will also include FFT data (documentation coming soon)
 
 ### Running the render-server
 You'll only need to do this if you're actually doing an installation in Harpa and need to output DMX.
