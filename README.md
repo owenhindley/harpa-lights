@@ -45,7 +45,9 @@ Getting up & running with the repo depends on what you want to do. See below:
 * This simulates the input from the audio analysis code, which will also include FFT data (documentation coming soon)
 
 #### To Submit a Visualiser
-If you have push access to the repository
+If you have push access to the repository, then please just add your custom class to the `dev/visualiser-server/visualisers/[cool name here]/` folder and email Owen to let him know it's up there.
+
+Otherwise please just zip up the creator tool with your code working inside and send it across to Owen who will incorporate it in the final build!
 
 ### Running the render-server
 You'll only need to do this if you're actually doing an installation in Harpa and need to output DMX.
