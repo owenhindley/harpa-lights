@@ -31,8 +31,9 @@ Harpa is a public building in Reykjavík, Iceland, and it's the hope of the foun
 Getting up & running with the repo depends on what you want to do. See below:
 
 ### Creating a music-reactive visualiser
-* Download the repository
-* Open up `/dev/visualiser-creator`
+* *Either* download the standalone visualiser [here](https://www.dropbox.com/s/uawi8e6ew071p6d/sonar-visualiser-creator.zip?dl=0) *or* this repository and open up `/dev/visualiser-creator`
+
+
 * Run `npm install`
 * To run the visualiser tester ( you could even call it a visualiser *visualiser* ) do the following :
 	* If you have Grunt installed, use the included `Gruntfile.js` which will run an http-server on `127.0.0.1:8080`. Instructions for installing grunt [here](http://gruntjs.com/using-the-cli)
@@ -42,6 +43,9 @@ Getting up & running with the repo depends on what you want to do. See below:
 * Clone `visualisers/HarpaTestVisualiser.js`, look at how it works, and create your own.
 * We have two channels, normalised 1-0. `1` is volume, `2` is 'beat value', which will peak at 1 on every 'beat'. 
 * This simulates the input from the audio analysis code, which will also include FFT data (documentation coming soon)
+
+#### To Submit a Visualiser
+If you have push access to the repository
 
 ### Running the render-server
 You'll only need to do this if you're actually doing an installation in Harpa and need to output DMX.
