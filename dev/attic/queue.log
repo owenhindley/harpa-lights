@@ -1,0 +1,11 @@
+{"level":"info","message":"Started queue server","timestamp":"2015-03-26T23:15:08.854Z"}
+{"level":"info","message":"setting current game key to 2308aa1c-5752-c9af-7684-46b72604d2f2","timestamp":"2015-03-26T23:15:10.054Z"}
+{"level":"info","message":"not enough people in this.queue (only 0) to start a game, waiting...","timestamp":"2015-03-26T23:15:10.054Z"}
+{"level":"info","message":"waiting on more players to connect","timestamp":"2015-03-26T23:15:10.054Z"}
+{"level":"info","message":"not enough people in this.queue (only 0) to start a game, waiting...","timestamp":"2015-03-26T23:15:11.054Z"}
+{"level":"info","message":"not enough people in this.queue (only 0) to start a game, waiting...","timestamp":"2015-03-26T23:15:12.055Z"}
+{"level":"info","message":"not enough people in this.queue (only 0) to start a game, waiting...","timestamp":"2015-03-26T23:15:13.056Z"}
+{"level":"info","message":"not enough people in this.queue (only 0) to start a game, waiting...","timestamp":"2015-03-26T23:15:14.058Z"}
+{"level":"info","message":"not enough people in this.queue (only 0) to start a game, waiting...","timestamp":"2015-03-26T23:15:15.058Z"}
+{"level":"info","message":"not enough people in this.queue (only 0) to start a game, waiting...","timestamp":"2015-03-26T23:15:16.059Z"}
+{"level":"info","message":"not enough people in this.queue (only 0) to start a game, waiting...","timestamp":"2015-03-26T23:15:17.061Z"}

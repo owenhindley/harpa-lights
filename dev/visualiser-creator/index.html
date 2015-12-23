@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Harpa/Sónar Visualiser Dev Environment</title>
+        <meta charset="utf-8"></meta>
+
+        <link rel="stylesheet" href="css/styles.css"/>
+        <script src="//localhost:35729/livereload.js"></script>
+
+        <script src="js/HarpaVisualiserBase.js"></script>
+        <script src="js/MP3AudioSource.js"></script>
+        <script src="js/TempoSource.js"></script>
+
+        <script src="js/HarpaSVGFixtureView.js"></script>
+        <script src="js/HarpaCanvasFixtureView.js"></script>
+
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- Custom Visualisers -->
+        <!-- -->
+        <!-- Add the path to your custom visualiser JS class here -->
+        <!-- -->
+        <script src="js/visualisers/HarpaTestVisualiser.js"></script>
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+
+        <script src="js/App.js"></script>
+
+    </head>
+
+    <body>
+        <div id="container">
+            <h3>Harpa Sónar Visualiser Test Environment</h3>
+            <div id="canvasContainer">
+                    <div class="visualiserContainer" id="sideContainer">
+                        <h3>Side Facade</h3>
+                    </div>
+                    <div class="visualiserContainer" id="frontContainer">
+                        <h3>Front Facade</h3>
+                    </div>
+            </div>
+            <h3>Textures</h3>
+            <div id="textureContainer">
+                <div id="sideTextureContainer">
+
+                </div>
+                <div id="frontTextureContainer">
+
+                </div>
+            </div>
+            <div id="audioInput">
+                <h6>Test channel sources:</h6>
+                <p><strong>Channel 1 / Volume signal</strong> : Replace this MP3 with your own</p>
+                <!-- 
+                    Test Audio from edtijo : https://freesound.org/people/edtijo/sounds/210737/
+                -->
+                <audio id="player" src="./audio/210737__edtijo__night-soft-techno.mp3" controls loop autoplay="false" preload autobuffer></audio><br/>
+                <br/>
+                <p><strong>Channel 2 / Tempo pulse</strong> : Tap in or type BPM below</p>
+                <input type="text" id="bpmValue" value="60"></input>
+                <button id="tapTempo">Tap BPM</button>
+            </div>
+            <div id="feedback">
+                <p id="debugOutput"></p>
+            </div>
+        </div>
+
+        <script src="http://connect.soundcloud.com/sdk.js"></script>
+    </body>
+
+</html>

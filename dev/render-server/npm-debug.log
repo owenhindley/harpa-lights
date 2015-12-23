@@ -1,0 +1,574 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/owenhindley/.nvm/versions/node/v4.2.1/bin/node',
+1 verbose cli   '/Users/owenhindley/.nvm/versions/node/v4.2.1/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'canvas' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.1
+4 verbose install initial load of /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/package.json
+5 warn package.json Harpa-Lights-Render-server@0.0.2 No description
+6 warn package.json Harpa-Lights-Render-server@0.0.2 No README data
+7 warn package.json Harpa-Lights-Render-server@0.0.2 No license field.
+8 verbose installManyTop reading scoped package data from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/artnet-node/package.json
+9 verbose installManyTop reading scoped package data from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/msgpack5/package.json
+10 verbose installManyTop reading scoped package data from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/nanotimer/package.json
+11 verbose installManyTop reading scoped package data from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/node-gyp/package.json
+12 verbose installManyTop reading scoped package data from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/socket.io/package.json
+13 verbose installManyTop reading scoped package data from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/winston/package.json
+14 verbose installManyTop reading scoped package data from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/zmq/package.json
+15 info package.json artnet-node@0.1.0 No license field.
+16 info package.json nanotimer@0.3.13 No license field.
+17 info package.json socket.io@1.3.7 No license field.
+18 verbose readDependencies loading dependencies from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/package.json
+19 silly cache add args [ 'canvas', null ]
+20 verbose cache add spec canvas
+21 silly cache add parsed spec Result {
+21 silly cache add   raw: 'canvas',
+21 silly cache add   scope: null,
+21 silly cache add   name: 'canvas',
+21 silly cache add   rawSpec: '',
+21 silly cache add   spec: '*',
+21 silly cache add   type: 'range' }
+22 silly addNamed canvas@*
+23 verbose addNamed "*" is a valid semver range for canvas
+24 silly addNameRange { name: 'canvas', range: '*', hasData: false }
+25 silly mapToRegistry name canvas
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry uri https://registry.npmjs.org/canvas
+29 verbose addNameRange registry:https://registry.npmjs.org/canvas not in flight; fetching
+30 verbose request uri https://registry.npmjs.org/canvas
+31 verbose request no auth needed
+32 info attempt registry request try #1 at 4:39:46 PM
+33 verbose request id 132de67b5b95f0d3
+34 verbose etag "8WQWKD0I5VJ2X5QDDT1WTIIZX"
+35 http request GET https://registry.npmjs.org/canvas
+36 http 304 https://registry.npmjs.org/canvas
+37 verbose headers { date: 'Wed, 23 Dec 2015 16:39:46 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   etag: '"8WQWKD0I5VJ2X5QDDT1WTIIZX"',
+37 verbose headers   age: '0',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-lhr6325-LHR',
+37 verbose headers   'x-cache': 'HIT',
+37 verbose headers   'x-cache-hits': '1',
+37 verbose headers   'x-timer': 'S1450888786.224964,VS0,VE184',
+37 verbose headers   vary: 'Accept' }
+38 silly get cb [ 304,
+38 silly get   { date: 'Wed, 23 Dec 2015 16:39:46 GMT',
+38 silly get     via: '1.1 varnish',
+38 silly get     'cache-control': 'max-age=300',
+38 silly get     etag: '"8WQWKD0I5VJ2X5QDDT1WTIIZX"',
+38 silly get     age: '0',
+38 silly get     connection: 'keep-alive',
+38 silly get     'x-served-by': 'cache-lhr6325-LHR',
+38 silly get     'x-cache': 'HIT',
+38 silly get     'x-cache-hits': '1',
+38 silly get     'x-timer': 'S1450888786.224964,VS0,VE184',
+38 silly get     vary: 'Accept' } ]
+39 verbose etag https://registry.npmjs.org/canvas from cache
+40 verbose get saving canvas to /Users/owenhindley/.npm/registry.npmjs.org/canvas/.cache.json
+41 silly addNameRange number 2 { name: 'canvas', range: '*', hasData: true }
+42 silly addNameRange versions [ 'canvas',
+42 silly addNameRange   [ '0.0.1',
+42 silly addNameRange     '0.0.2',
+42 silly addNameRange     '0.0.3',
+42 silly addNameRange     '0.0.4',
+42 silly addNameRange     '0.0.5',
+42 silly addNameRange     '0.0.6',
+42 silly addNameRange     '0.0.7',
+42 silly addNameRange     '0.0.8',
+42 silly addNameRange     '0.1.0',
+42 silly addNameRange     '0.2.0',
+42 silly addNameRange     '0.2.1',
+42 silly addNameRange     '0.3.0',
+42 silly addNameRange     '0.3.1',
+42 silly addNameRange     '0.3.2',
+42 silly addNameRange     '0.3.3',
+42 silly addNameRange     '0.4.0',
+42 silly addNameRange     '0.4.1',
+42 silly addNameRange     '0.4.2',
+42 silly addNameRange     '0.4.3',
+42 silly addNameRange     '0.5.0',
+42 silly addNameRange     '0.5.1',
+42 silly addNameRange     '0.5.2',
+42 silly addNameRange     '0.5.3',
+42 silly addNameRange     '0.5.4',
+42 silly addNameRange     '0.6.0',
+42 silly addNameRange     '0.7.0',
+42 silly addNameRange     '0.7.1',
+42 silly addNameRange     '0.7.2',
+42 silly addNameRange     '0.7.3',
+42 silly addNameRange     '0.8.0',
+42 silly addNameRange     '0.8.1',
+42 silly addNameRange     '0.8.2',
+42 silly addNameRange     '0.8.3',
+42 silly addNameRange     '0.9.0',
+42 silly addNameRange     '0.10.0',
+42 silly addNameRange     '0.10.1',
+42 silly addNameRange     '0.10.2',
+42 silly addNameRange     '0.10.3',
+42 silly addNameRange     '0.11.0',
+42 silly addNameRange     '0.11.1',
+42 silly addNameRange     '0.11.2',
+42 silly addNameRange     '0.11.3',
+42 silly addNameRange     '0.12.0',
+42 silly addNameRange     '0.12.1',
+42 silly addNameRange     '0.13.0',
+42 silly addNameRange     '0.13.1',
+42 silly addNameRange     '1.0.0',
+42 silly addNameRange     '1.0.1',
+42 silly addNameRange     '1.0.2',
+42 silly addNameRange     '1.0.3',
+42 silly addNameRange     '1.0.4',
+42 silly addNameRange     '1.1.0',
+42 silly addNameRange     '1.1.1',
+42 silly addNameRange     '1.1.2',
+42 silly addNameRange     '1.1.3',
+42 silly addNameRange     '1.1.4',
+42 silly addNameRange     '1.1.5',
+42 silly addNameRange     '1.1.6',
+42 silly addNameRange     '1.2.0',
+42 silly addNameRange     '1.2.1',
+42 silly addNameRange     '1.2.2',
+42 silly addNameRange     '1.2.3',
+42 silly addNameRange     '1.2.4',
+42 silly addNameRange     '1.2.5',
+42 silly addNameRange     '1.2.6',
+42 silly addNameRange     '1.2.7',
+42 silly addNameRange     '1.2.8',
+42 silly addNameRange     '1.2.9',
+42 silly addNameRange     '1.2.10',
+42 silly addNameRange     '1.2.11',
+42 silly addNameRange     '1.3.0',
+42 silly addNameRange     '1.3.1',
+42 silly addNameRange     '1.3.2',
+42 silly addNameRange     '1.3.3',
+42 silly addNameRange     '1.3.4',
+42 silly addNameRange     '1.3.5' ] ]
+43 silly addNamed canvas@1.3.5
+44 verbose addNamed "1.3.5" is a plain semver version for canvas
+45 silly cache afterAdd canvas@1.3.5
+46 verbose afterAdd /Users/owenhindley/.npm/canvas/1.3.5/package/package.json not in flight; writing
+47 verbose afterAdd /Users/owenhindley/.npm/canvas/1.3.5/package/package.json written
+48 silly install resolved [ { name: 'canvas',
+48 silly install resolved     description: 'Canvas graphics API backed by Cairo',
+48 silly install resolved     version: '1.3.5',
+48 silly install resolved     author: { name: 'TJ Holowaychuk', email: 'tj@learnboost.com' },
+48 silly install resolved     contributors: [ [Object], [Object], [Object] ],
+48 silly install resolved     keywords:
+48 silly install resolved      [ 'canvas',
+48 silly install resolved        'graphic',
+48 silly install resolved        'graphics',
+48 silly install resolved        'pixman',
+48 silly install resolved        'cairo',
+48 silly install resolved        'image',
+48 silly install resolved        'images',
+48 silly install resolved        'pdf' ],
+48 silly install resolved     homepage: 'https://github.com/Automattic/node-canvas',
+48 silly install resolved     repository:
+48 silly install resolved      { type: 'git',
+48 silly install resolved        url: 'git://github.com/Automattic/node-canvas.git' },
+48 silly install resolved     scripts:
+48 silly install resolved      { prebenchmark: 'node-gyp build',
+48 silly install resolved        benchmark: 'node benchmarks/run.js',
+48 silly install resolved        pretest: 'node-gyp build',
+48 silly install resolved        test: 'mocha test/*.test.js',
+48 silly install resolved        'pretest-server': 'node-gyp build',
+48 silly install resolved        'test-server': 'node test/server.js',
+48 silly install resolved        install: 'node-gyp rebuild' },
+48 silly install resolved     dependencies: { nan: '^2.1.0' },
+48 silly install resolved     devDependencies:
+48 silly install resolved      { 'body-parser': '^1.13.3',
+48 silly install resolved        express: '^4.13.2',
+48 silly install resolved        jade: '^1.11.0',
+48 silly install resolved        mocha: '*' },
+48 silly install resolved     engines: { node: '>=0.8.0' },
+48 silly install resolved     main: './lib/canvas.js',
+48 silly install resolved     license: 'MIT',
+48 silly install resolved     gypfile: true,
+48 silly install resolved     gitHead: 'c65be2ac4e55cb38464660e13d1f442ac986ffcb',
+48 silly install resolved     bugs: { url: 'https://github.com/Automattic/node-canvas/issues' },
+48 silly install resolved     _id: 'canvas@1.3.5',
+48 silly install resolved     _shasum: 'd9fb34689fb57791738c1756864016b40b1763f5',
+48 silly install resolved     _from: 'canvas@*',
+48 silly install resolved     _npmVersion: '3.3.12',
+48 silly install resolved     _nodeVersion: '5.1.0',
+48 silly install resolved     _npmUser: { name: 'linusu', email: 'linus@folkdatorn.se' },
+48 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+48 silly install resolved     dist:
+48 silly install resolved      { shasum: 'd9fb34689fb57791738c1756864016b40b1763f5',
+48 silly install resolved        tarball: 'http://registry.npmjs.org/canvas/-/canvas-1.3.5.tgz' },
+48 silly install resolved     directories: {},
+48 silly install resolved     _resolved: 'https://registry.npmjs.org/canvas/-/canvas-1.3.5.tgz',
+48 silly install resolved     readme: 'ERROR: No README data found!' } ]
+49 info install canvas@1.3.5 into /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server
+50 info installOne canvas@1.3.5
+51 verbose installOne of canvas to /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server not in flight; installing
+52 verbose lock using /Users/owenhindley/.npm/_locks/canvas-746b89339ca068a8.lock for /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+53 silly install write writing canvas 1.3.5 to /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+54 verbose unbuild node_modules/canvas
+55 silly gentlyRm /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas is being purged from base /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server
+56 verbose gentlyRm don't care about contents; nuking /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+57 verbose tar unpack /Users/owenhindley/.npm/canvas/1.3.5/package.tgz
+58 verbose tar unpacking to /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+59 silly gentlyRm /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas is being purged
+60 verbose gentlyRm don't care about contents; nuking /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+61 silly gunzTarPerm modes [ '755', '644' ]
+62 silly gunzTarPerm extractEntry package.json
+63 silly gunzTarPerm extractEntry .npmignore
+64 silly gunzTarPerm extractEntry index.js
+65 silly gunzTarPerm extractEntry Readme.md
+66 silly gunzTarPerm extractEntry binding.gyp
+67 silly gunzTarPerm extractEntry .travis.yml
+68 silly gunzTarPerm extractEntry install
+69 silly gunzTarPerm extractEntry lib/bindings.js
+70 silly gunzTarPerm extractEntry lib/canvas.js
+71 silly gunzTarPerm extractEntry lib/context2d.js
+72 silly gunzTarPerm extractEntry lib/image.js
+73 silly gunzTarPerm extractEntry lib/jpegstream.js
+74 silly gunzTarPerm extractEntry lib/pngstream.js
+75 silly gunzTarPerm extractEntry History.md
+76 silly gunzTarPerm extractEntry src/Image.cc
+77 silly gunzTarPerm extractEntry src/Canvas.cc
+78 silly gunzTarPerm extractEntry src/CanvasGradient.cc
+79 silly gunzTarPerm extractEntry src/CanvasGradient.h
+80 silly gunzTarPerm extractEntry src/CanvasPattern.cc
+81 silly gunzTarPerm extractEntry src/CanvasPattern.h
+82 silly gunzTarPerm extractEntry src/CanvasRenderingContext2d.cc
+83 silly gunzTarPerm extractEntry src/CanvasRenderingContext2d.h
+84 silly gunzTarPerm extractEntry src/FontFace.cc
+85 silly gunzTarPerm extractEntry src/FontFace.h
+86 silly gunzTarPerm extractEntry src/Canvas.h
+87 silly gunzTarPerm extractEntry src/Image.h
+88 silly gunzTarPerm extractEntry src/ImageData.cc
+89 silly gunzTarPerm extractEntry src/ImageData.h
+90 silly gunzTarPerm extractEntry src/JPEGStream.h
+91 silly gunzTarPerm extractEntry src/PNG.h
+92 silly gunzTarPerm extractEntry src/Point.h
+93 silly gunzTarPerm extractEntry src/closure.h
+94 silly gunzTarPerm extractEntry src/color.cc
+95 silly gunzTarPerm extractEntry src/color.h
+96 silly gunzTarPerm extractEntry src/init.cc
+97 silly gunzTarPerm extractEntry util/cairo_include.sh
+98 silly gunzTarPerm extractEntry util/has_cairo_freetype.sh
+99 silly gunzTarPerm extractEntry util/has_lib.sh
+100 silly gunzTarPerm extractEntry util/lib_lookup.sh
+101 verbose write writing to /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/package.json
+102 info preinstall canvas@1.3.5
+103 verbose readDependencies loading dependencies from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/package.json
+104 silly prepareForInstallMany adding nan@^2.1.0 from canvas dependencies
+105 verbose readDependencies loading dependencies from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/package.json
+106 silly cache add args [ 'nan@^2.1.0', null ]
+107 verbose cache add spec nan@^2.1.0
+108 silly cache add parsed spec Result {
+108 silly cache add   raw: 'nan@^2.1.0',
+108 silly cache add   scope: null,
+108 silly cache add   name: 'nan',
+108 silly cache add   rawSpec: '^2.1.0',
+108 silly cache add   spec: '>=2.1.0 <3.0.0',
+108 silly cache add   type: 'range' }
+109 silly addNamed nan@>=2.1.0 <3.0.0
+110 verbose addNamed ">=2.1.0 <3.0.0" is a valid semver range for nan
+111 silly addNameRange { name: 'nan', range: '>=2.1.0 <3.0.0', hasData: false }
+112 silly mapToRegistry name nan
+113 silly mapToRegistry using default registry
+114 silly mapToRegistry registry https://registry.npmjs.org/
+115 silly mapToRegistry uri https://registry.npmjs.org/nan
+116 verbose addNameRange registry:https://registry.npmjs.org/nan not in flight; fetching
+117 verbose request uri https://registry.npmjs.org/nan
+118 verbose request no auth needed
+119 info attempt registry request try #1 at 4:39:46 PM
+120 verbose etag "7CEDVJA24M9BXRU7SU6WRSW4M"
+121 http request GET https://registry.npmjs.org/nan
+122 http 304 https://registry.npmjs.org/nan
+123 verbose headers { date: 'Wed, 23 Dec 2015 16:39:46 GMT',
+123 verbose headers   via: '1.1 varnish',
+123 verbose headers   'cache-control': 'max-age=60',
+123 verbose headers   etag: '"7CEDVJA24M9BXRU7SU6WRSW4M"',
+123 verbose headers   age: '26',
+123 verbose headers   connection: 'keep-alive',
+123 verbose headers   'x-served-by': 'cache-lhr6331-LHR',
+123 verbose headers   'x-cache': 'HIT',
+123 verbose headers   'x-cache-hits': '1',
+123 verbose headers   'x-timer': 'S1450888786.586658,VS0,VE0',
+123 verbose headers   vary: 'Accept' }
+124 silly get cb [ 304,
+124 silly get   { date: 'Wed, 23 Dec 2015 16:39:46 GMT',
+124 silly get     via: '1.1 varnish',
+124 silly get     'cache-control': 'max-age=60',
+124 silly get     etag: '"7CEDVJA24M9BXRU7SU6WRSW4M"',
+124 silly get     age: '26',
+124 silly get     connection: 'keep-alive',
+124 silly get     'x-served-by': 'cache-lhr6331-LHR',
+124 silly get     'x-cache': 'HIT',
+124 silly get     'x-cache-hits': '1',
+124 silly get     'x-timer': 'S1450888786.586658,VS0,VE0',
+124 silly get     vary: 'Accept' } ]
+125 verbose etag https://registry.npmjs.org/nan from cache
+126 verbose get saving nan to /Users/owenhindley/.npm/registry.npmjs.org/nan/.cache.json
+127 silly addNameRange number 2 { name: 'nan', range: '>=2.1.0 <3.0.0', hasData: true }
+128 silly addNameRange versions [ 'nan',
+128 silly addNameRange   [ '0.3.0-wip',
+128 silly addNameRange     '0.3.0-wip2',
+128 silly addNameRange     '0.3.0',
+128 silly addNameRange     '0.3.1',
+128 silly addNameRange     '0.3.2',
+128 silly addNameRange     '0.4.0',
+128 silly addNameRange     '0.4.1',
+128 silly addNameRange     '0.4.2',
+128 silly addNameRange     '0.4.3',
+128 silly addNameRange     '0.4.4',
+128 silly addNameRange     '0.5.0',
+128 silly addNameRange     '0.5.1',
+128 silly addNameRange     '0.5.2',
+128 silly addNameRange     '0.6.0',
+128 silly addNameRange     '0.7.0',
+128 silly addNameRange     '0.7.1',
+128 silly addNameRange     '0.8.0',
+128 silly addNameRange     '1.0.0',
+128 silly addNameRange     '1.1.0',
+128 silly addNameRange     '1.1.1',
+128 silly addNameRange     '1.1.2',
+128 silly addNameRange     '1.2.0',
+128 silly addNameRange     '1.3.0',
+128 silly addNameRange     '1.4.0',
+128 silly addNameRange     '1.4.1',
+128 silly addNameRange     '1.5.0',
+128 silly addNameRange     '1.4.2',
+128 silly addNameRange     '1.4.3',
+128 silly addNameRange     '1.5.1',
+128 silly addNameRange     '1.5.2',
+128 silly addNameRange     '1.6.0',
+128 silly addNameRange     '1.5.3',
+128 silly addNameRange     '1.6.1',
+128 silly addNameRange     '1.6.2',
+128 silly addNameRange     '1.7.0',
+128 silly addNameRange     '1.8.0',
+128 silly addNameRange     '1.8.1',
+128 silly addNameRange     '1.8.2',
+128 silly addNameRange     '1.8.3',
+128 silly addNameRange     '1.8.4',
+128 silly addNameRange     '1.9.0',
+128 silly addNameRange     '2.0.0',
+128 silly addNameRange     '2.0.1',
+128 silly addNameRange     '2.0.2',
+128 silly addNameRange     '2.0.3',
+128 silly addNameRange     '2.0.4',
+128 silly addNameRange     '2.0.5',
+128 silly addNameRange     '2.0.6',
+128 silly addNameRange     '2.0.7',
+128 silly addNameRange     '2.0.8',
+128 silly addNameRange     '2.0.9',
+128 silly addNameRange     '2.1.0' ] ]
+129 silly addNamed nan@2.1.0
+130 verbose addNamed "2.1.0" is a plain semver version for nan
+131 silly cache afterAdd nan@2.1.0
+132 verbose afterAdd /Users/owenhindley/.npm/nan/2.1.0/package/package.json not in flight; writing
+133 verbose afterAdd /Users/owenhindley/.npm/nan/2.1.0/package/package.json written
+134 silly install resolved [ { name: 'nan',
+134 silly install resolved     version: '2.1.0',
+134 silly install resolved     description: 'Native Abstractions for Node.js: C++ header for Node 0.8 -> 4 compatibility',
+134 silly install resolved     main: 'include_dirs.js',
+134 silly install resolved     repository: { type: 'git', url: 'git://github.com/nodejs/nan.git' },
+134 silly install resolved     scripts:
+134 silly install resolved      { test: 'tap --gc test/js/*-test.js',
+134 silly install resolved        'rebuild-tests': 'node-gyp rebuild --msvs_version=2013 --directory test',
+134 silly install resolved        docs: 'doc/.build.sh' },
+134 silly install resolved     contributors:
+134 silly install resolved      [ [Object],
+134 silly install resolved        [Object],
+134 silly install resolved        [Object],
+134 silly install resolved        [Object],
+134 silly install resolved        [Object],
+134 silly install resolved        [Object],
+134 silly install resolved        [Object] ],
+134 silly install resolved     devDependencies:
+134 silly install resolved      { bindings: '~1.2.1',
+134 silly install resolved        commander: '^2.8.1',
+134 silly install resolved        glob: '^5.0.14',
+134 silly install resolved        'node-gyp': '~3.0.1',
+134 silly install resolved        tap: '~0.7.1',
+134 silly install resolved        xtend: '~4.0.0' },
+134 silly install resolved     license: 'MIT',
+134 silly install resolved     bugs: { url: 'https://github.com/nodejs/nan/issues' },
+134 silly install resolved     homepage: 'https://github.com/nodejs/nan#readme',
+134 silly install resolved     _id: 'nan@2.1.0',
+134 silly install resolved     _shasum: '020a7ccedc63fdee85f85967d5607849e74abbe8',
+134 silly install resolved     _resolved: 'https://registry.npmjs.org/nan/-/nan-2.1.0.tgz',
+134 silly install resolved     _from: 'nan@>=2.1.0 <3.0.0',
+134 silly install resolved     _npmVersion: '3.3.5',
+134 silly install resolved     _nodeVersion: '4.1.2',
+134 silly install resolved     _npmUser: { name: 'kkoopa', email: 'bbyholm@abo.fi' },
+134 silly install resolved     dist:
+134 silly install resolved      { shasum: '020a7ccedc63fdee85f85967d5607849e74abbe8',
+134 silly install resolved        tarball: 'http://registry.npmjs.org/nan/-/nan-2.1.0.tgz' },
+134 silly install resolved     maintainers: [ [Object], [Object] ],
+134 silly install resolved     directories: {},
+134 silly install resolved     readme: 'ERROR: No README data found!' } ]
+135 info install nan@2.1.0 into /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+136 info installOne nan@2.1.0
+137 verbose installOne of nan to /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas not in flight; installing
+138 verbose lock using /Users/owenhindley/.npm/_locks/nan-51b7afaac681cc88.lock for /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan
+139 silly install write writing nan 2.1.0 to /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan
+140 verbose unbuild node_modules/canvas/node_modules/nan
+141 silly gentlyRm /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan is being purged from base /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server
+142 verbose gentlyRm don't care about contents; nuking /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan
+143 verbose tar unpack /Users/owenhindley/.npm/nan/2.1.0/package.tgz
+144 verbose tar unpacking to /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan
+145 silly gentlyRm /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan is being purged
+146 verbose gentlyRm don't care about contents; nuking /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan
+147 silly gunzTarPerm modes [ '755', '644' ]
+148 silly gunzTarPerm extractEntry package.json
+149 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+150 silly gunzTarPerm extractEntry README.md
+151 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
+152 silly gunzTarPerm extractEntry include_dirs.js
+153 silly gunzTarPerm modified mode [ 'include_dirs.js', 436, 420 ]
+154 silly gunzTarPerm extractEntry nan_converters.h
+155 silly gunzTarPerm modified mode [ 'nan_converters.h', 436, 420 ]
+156 silly gunzTarPerm extractEntry LICENSE.md
+157 silly gunzTarPerm modified mode [ 'LICENSE.md', 436, 420 ]
+158 silly gunzTarPerm extractEntry .dntrc
+159 silly gunzTarPerm modified mode [ '.dntrc', 436, 420 ]
+160 silly gunzTarPerm extractEntry appveyor.yml
+161 silly gunzTarPerm modified mode [ 'appveyor.yml', 436, 420 ]
+162 silly gunzTarPerm extractEntry doc/new.md
+163 silly gunzTarPerm modified mode [ 'doc/new.md', 436, 420 ]
+164 silly gunzTarPerm extractEntry doc/.build.sh
+165 silly gunzTarPerm modified mode [ 'doc/.build.sh', 509, 493 ]
+166 silly gunzTarPerm extractEntry doc/buffers.md
+167 silly gunzTarPerm modified mode [ 'doc/buffers.md', 436, 420 ]
+168 silly gunzTarPerm extractEntry doc/callback.md
+169 silly gunzTarPerm modified mode [ 'doc/callback.md', 436, 420 ]
+170 silly gunzTarPerm extractEntry doc/converters.md
+171 silly gunzTarPerm modified mode [ 'doc/converters.md', 436, 420 ]
+172 silly gunzTarPerm extractEntry doc/errors.md
+173 silly gunzTarPerm modified mode [ 'doc/errors.md', 436, 420 ]
+174 silly gunzTarPerm extractEntry doc/maybe_types.md
+175 silly gunzTarPerm modified mode [ 'doc/maybe_types.md', 436, 420 ]
+176 silly gunzTarPerm extractEntry doc/methods.md
+177 silly gunzTarPerm modified mode [ 'doc/methods.md', 436, 420 ]
+178 silly gunzTarPerm extractEntry doc/asyncworker.md
+179 silly gunzTarPerm modified mode [ 'doc/asyncworker.md', 436, 420 ]
+180 silly gunzTarPerm extractEntry doc/node_misc.md
+181 silly gunzTarPerm modified mode [ 'doc/node_misc.md', 436, 420 ]
+182 silly gunzTarPerm extractEntry doc/persistent.md
+183 silly gunzTarPerm modified mode [ 'doc/persistent.md', 436, 420 ]
+184 silly gunzTarPerm extractEntry doc/scopes.md
+185 silly gunzTarPerm modified mode [ 'doc/scopes.md', 436, 420 ]
+186 silly gunzTarPerm extractEntry doc/script.md
+187 silly gunzTarPerm modified mode [ 'doc/script.md', 436, 420 ]
+188 silly gunzTarPerm extractEntry doc/string_bytes.md
+189 silly gunzTarPerm modified mode [ 'doc/string_bytes.md', 436, 420 ]
+190 silly gunzTarPerm extractEntry doc/v8_internals.md
+191 silly gunzTarPerm modified mode [ 'doc/v8_internals.md', 436, 420 ]
+192 silly gunzTarPerm extractEntry doc/v8_misc.md
+193 silly gunzTarPerm modified mode [ 'doc/v8_misc.md', 436, 420 ]
+194 silly gunzTarPerm extractEntry nan.h
+195 silly gunzTarPerm modified mode [ 'nan.h', 436, 420 ]
+196 silly gunzTarPerm extractEntry nan_callbacks.h
+197 silly gunzTarPerm modified mode [ 'nan_callbacks.h', 436, 420 ]
+198 silly gunzTarPerm extractEntry nan_callbacks_12_inl.h
+199 silly gunzTarPerm modified mode [ 'nan_callbacks_12_inl.h', 436, 420 ]
+200 silly gunzTarPerm extractEntry nan_callbacks_pre_12_inl.h
+201 silly gunzTarPerm modified mode [ 'nan_callbacks_pre_12_inl.h', 436, 420 ]
+202 silly gunzTarPerm extractEntry nan_converters_43_inl.h
+203 silly gunzTarPerm modified mode [ 'nan_converters_43_inl.h', 436, 420 ]
+204 silly gunzTarPerm extractEntry nan_converters_pre_43_inl.h
+205 silly gunzTarPerm modified mode [ 'nan_converters_pre_43_inl.h', 436, 420 ]
+206 silly gunzTarPerm extractEntry nan_implementation_12_inl.h
+207 silly gunzTarPerm modified mode [ 'nan_implementation_12_inl.h', 436, 420 ]
+208 silly gunzTarPerm extractEntry nan_implementation_pre_12_inl.h
+209 silly gunzTarPerm modified mode [ 'nan_implementation_pre_12_inl.h', 436, 420 ]
+210 silly gunzTarPerm extractEntry nan_maybe_43_inl.h
+211 silly gunzTarPerm modified mode [ 'nan_maybe_43_inl.h', 436, 420 ]
+212 silly gunzTarPerm extractEntry nan_maybe_pre_43_inl.h
+213 silly gunzTarPerm modified mode [ 'nan_maybe_pre_43_inl.h', 436, 420 ]
+214 silly gunzTarPerm extractEntry nan_new.h
+215 silly gunzTarPerm modified mode [ 'nan_new.h', 436, 420 ]
+216 silly gunzTarPerm extractEntry nan_object_wrap.h
+217 silly gunzTarPerm modified mode [ 'nan_object_wrap.h', 436, 420 ]
+218 silly gunzTarPerm extractEntry nan_persistent_12_inl.h
+219 silly gunzTarPerm modified mode [ 'nan_persistent_12_inl.h', 436, 420 ]
+220 silly gunzTarPerm extractEntry nan_persistent_pre_12_inl.h
+221 silly gunzTarPerm modified mode [ 'nan_persistent_pre_12_inl.h', 436, 420 ]
+222 silly gunzTarPerm extractEntry nan_string_bytes.h
+223 silly gunzTarPerm modified mode [ 'nan_string_bytes.h', 436, 420 ]
+224 silly gunzTarPerm extractEntry nan_typedarray_contents.h
+225 silly gunzTarPerm modified mode [ 'nan_typedarray_contents.h', 436, 420 ]
+226 silly gunzTarPerm extractEntry nan_weak.h
+227 silly gunzTarPerm modified mode [ 'nan_weak.h', 436, 420 ]
+228 silly gunzTarPerm extractEntry CHANGELOG.md
+229 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 436, 420 ]
+230 silly gunzTarPerm extractEntry tools/package.json
+231 silly gunzTarPerm modified mode [ 'tools/package.json', 436, 420 ]
+232 silly gunzTarPerm extractEntry tools/README.md
+233 silly gunzTarPerm modified mode [ 'tools/README.md', 436, 420 ]
+234 silly gunzTarPerm extractEntry tools/1to2.js
+235 silly gunzTarPerm modified mode [ 'tools/1to2.js', 509, 493 ]
+236 verbose write writing to /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan/package.json
+237 info preinstall nan@2.1.0
+238 verbose readDependencies loading dependencies from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan/package.json
+239 verbose readDependencies loading dependencies from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan/package.json
+240 silly install resolved []
+241 verbose about to build /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan
+242 info build /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan
+243 info linkStuff nan@2.1.0
+244 silly linkStuff nan@2.1.0 has /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules as its parent node_modules
+245 verbose linkBins nan@2.1.0
+246 verbose linkMans nan@2.1.0
+247 verbose rebuildBundles nan@2.1.0
+248 info install nan@2.1.0
+249 info postinstall nan@2.1.0
+250 verbose unlock done using /Users/owenhindley/.npm/_locks/nan-51b7afaac681cc88.lock for /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas/node_modules/nan
+251 verbose about to build /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+252 info build /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+253 info linkStuff canvas@1.3.5
+254 silly linkStuff canvas@1.3.5 has /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules as its parent node_modules
+255 verbose linkBins canvas@1.3.5
+256 verbose linkMans canvas@1.3.5
+257 verbose rebuildBundles canvas@1.3.5
+258 verbose rebuildBundles [ 'nan' ]
+259 info install canvas@1.3.5
+260 verbose unsafe-perm in lifecycle true
+261 info canvas@1.3.5 Failed to exec install script
+262 verbose unlock done using /Users/owenhindley/.npm/_locks/canvas-746b89339ca068a8.lock for /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+263 verbose stack Error: canvas@1.3.5 install: `node-gyp rebuild`
+263 verbose stack Exit status 1
+263 verbose stack     at EventEmitter.<anonymous> (/Users/owenhindley/.nvm/versions/node/v4.2.1/lib/node_modules/npm/lib/utils/lifecycle.js:214:16)
+263 verbose stack     at emitTwo (events.js:87:13)
+263 verbose stack     at EventEmitter.emit (events.js:172:7)
+263 verbose stack     at ChildProcess.<anonymous> (/Users/owenhindley/.nvm/versions/node/v4.2.1/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+263 verbose stack     at emitTwo (events.js:87:13)
+263 verbose stack     at ChildProcess.emit (events.js:172:7)
+263 verbose stack     at maybeClose (internal/child_process.js:818:16)
+263 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+264 verbose pkgid canvas@1.3.5
+265 verbose cwd /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server
+266 error Darwin 14.5.0
+267 error argv "/Users/owenhindley/.nvm/versions/node/v4.2.1/bin/node" "/Users/owenhindley/.nvm/versions/node/v4.2.1/bin/npm" "install" "canvas"
+268 error node v4.2.1
+269 error npm  v2.14.7
+270 error code ELIFECYCLE
+271 error canvas@1.3.5 install: `node-gyp rebuild`
+271 error Exit status 1
+272 error Failed at the canvas@1.3.5 install script 'node-gyp rebuild'.
+272 error This is most likely a problem with the canvas package,
+272 error not with npm itself.
+272 error Tell the author that this fails on your system:
+272 error     node-gyp rebuild
+272 error You can get their info via:
+272 error     npm owner ls canvas
+272 error There is likely additional logging output above.
+273 verbose exit [ 1, true ]
+274 verbose unbuild node_modules/canvas
+275 info preuninstall canvas@1.3.5
+276 info uninstall canvas@1.3.5
+277 verbose unbuild rmStuff canvas@1.3.5 from /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules
+278 info postuninstall canvas@1.3.5
+279 silly gentlyRm /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas is being purged from base /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server
+280 verbose gentlyRm don't care about contents; nuking /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+281 silly vacuum-fs purging /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules/canvas
+282 silly vacuum-fs quitting because other entries in /Users/owenhindley/Documents/workspace/projects/OWE_008_HarpaLights/harpa-lights/dev/render-server/node_modules

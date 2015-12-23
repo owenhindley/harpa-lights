@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HarpaPONG Controller</title>
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="HarpaPONG">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+
+	<meta name="description" content="HarpaPONG">
+	<meta property="og:title" content="HarpaPONG" />
+	<meta property="og:type" content="games" />
+	<meta property="og:url" content="http://www.harpapong.com" />
+	<meta property="og:site_name" content="Harpa PONG" />
+	<meta property="og:description" content="Harpa PONG" />
+	<meta property="og:image" content="http://www.harpapong.com/files/images/sharing.jpg" />
+
+
+    <link href="../libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <!--   
+    <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
+ -->
+    <link href="../css/fonts.css" rel='stylesheet'/>
+    <link href="../css/main.css" rel='stylesheet'/>
+
+	<script src="../js/libs/jquery-2.0.3.min.js"></script>
+	<script src="../js/libs/howler.js"></script>
+	<script src="../libs/bootstrap/js/bootstrap.js"></script>
+
+	<script src="../common/Utils.js"></script>
+	<script src="../js/PongLanguageSelect.js"></script>
+	<script src="../js/AudioManagerHowler.js"></script>
+	<script src="js/libs/socket.io-1.0.6.js"></script>
+	<script src="js/MouseInput.js"></script>
+	<script src="js/AccelInput.js"></script>
+
+	<script src="js/Controller.js"></script>
+
+
+
+	<script>
+
+		var controller;
+		var indicator;
+		var scoreIndicator;
+		var audioManager;
+		var playing = true;
+
+		document.addEventListener("DOMContentLoaded", function() {
+
+			indicator = document.getElementById("indicator");
+			scoreIndicator = document.getElementById("scoreNumber");
+
+			queryParams = Utils.parseQueryString(document.location.href);
+
+			var playerId = queryParams["player"] || "";
+			var key = queryParams["key"] || "";
+			var portNumber = queryParams["port"] || "8081";
+
+			controller = Controller.init(document.location.hostname + ":" + portNumber, playerId, queryParams["method"], key);
+
+			// document.getElementById("whichPlayer").innerText = "You are player " + playerId;
+
+			
+			$("#whichPlayer").addClass("player-" + playerId);
+		
+			audioManager = AudioManager.init(true);
+			
+			$("#enableAudio").click(enableAudio);
+
+			update();
+			//setInterval(update, 500);
+
+		});
+
+		function update() {
+
+			if (playing)
+				window.requestAnimationFrame(update);
+
+			if (controller.state == controller.GAME_STATE_DURING){
+				indicator.style.left = (20 + (controller.input.value * 60)) + "%";
+
+				scoreIndicator.innerText = controller.score;
+			} 
+
+			if (controller.state == controller.GAME_STATE_AFTER){
+				playing = false;
+				showEnd(controller.win);
+			}
+
+			if (controller.state == controller.GAME_STATE_REJECT){
+				playing = false;
+				// go back to the queue
+				document.location.href = document.location.href.split("/controller")[0];
+
+			}
+
+			
+
+		};
+
+		function showEnd(win) {
+
+			$("#instructions").fadeOut();
+			$("#feedback").fadeOut();
+
+			$("#end").delay(500).fadeIn();
+
+
+
+			if (win){
+				$("#playerResult").addClass("win");
+
+			} else {
+				$("#playerResult").addClass("lose");
+			}
+
+			$("#queueButton").click(function() {
+				document.location.href = document.location.href.split("/controller")[0];
+				// 
+				// FOR MENNINGGARNOTT
+				//document.location.reload();
+
+			});
+
+		};
+
+		function enableAudio() {
+
+			$("#enableAudio").fadeOut();
+		};
+
+	</script>
+
+</head>
+<body id="controller" class="lang-is">
+	<div id="background">&nbsp;</div>
+
+	<div id="langContainer">
+
+	</div>
+
+	<section id="instructions">
+		<br/>
+		<h3>
+			<span class="lang-en">Game on!</span>
+			<span class="lang-is">Byrja!</span>
+		</h3>
+
+		<p class="dark" id="whichPlayer">
+				
+			<span class="lang-en player-a">You control the <u>TOP</u> paddle</span>
+			<span class="lang-is player-a">Þú stýrir <u>EFRI</u> spaðanum</span>
+
+			<span class="lang-en player-b">You control the <u>BOTTOM</u> paddle</span>
+			<span class="lang-is player-b">Þú stýrir <u>NEÐRI</u> spaðanum</span>
+
+		</p>
+		<br/>
+
+		
+		
+	
+	</section>
+
+	<section id="feedback">
+		<div id="indicatorContainer">
+			<div id="indicator">
+				<div id="scoreNumber">0</div>
+			&nbsp;</div>
+		</div>
+
+		<p id="tiltInstruction">
+			<span class="lang-en">Tilt your phone</span>
+			<span class="lang-is">Hallaðu símanum</span>
+		</p>
+
+		<button id="enableAudio">
+			<span class="lang-en">Enable Audio</span>
+			<span class="lang-is">Kveikja á hljóði</span>
+		</button>
+
+
+	</section>
+
+	<section id="end">
+		<h3>
+			<span class="lang-en">GAME OVER!</span>
+			<span class="lang-is">LEIK LOKIÐ!</span>
+		</h3>
+
+		<p id="playerResult">
+			<span class="winner">
+				<span class="lang-en player-win">Congratulations! You win!</span>
+				<span class="lang-is player-win">Til hamingju! Þú vannst!</span>
+			</span>
+
+			<span class="loser">
+				<span class="lang-en player-lose">You lose, better luck next time :(</span>
+				<span class="lang-is player-lose">Því miður, gengur betur næst :(</span>
+			</span>
+		</p>
+
+		<button id="queueButton">
+			<span class="lang-en">Play Again</span>
+			<span class="lang-is">Spila aftur</span>
+		</button>
+	</section>
+
+</body>
+</html>

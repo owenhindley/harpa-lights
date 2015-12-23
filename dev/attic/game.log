@@ -1,0 +1,3 @@
+{"level":"info","message":"Started game server","timestamp":"2015-03-26T23:15:08.962Z"}
+{"level":"info","message":"Requesting players, key : 2308aa1c-5752-c9af-7684-46b72604d2f2","timestamp":"2015-03-26T23:15:08.964Z"}
+{"level":"info","message":"calling nextgame on queue server : 127.0.0.1","timestamp":"2015-03-26T23:15:08.965Z"}

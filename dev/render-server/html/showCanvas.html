@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HarpaPONG renderer canvas test</title>
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+
+
+	<style>
+
+		body, html {
+			background:black;
+			color:rgb(232, 21, 125);
+			font-family: "Avenir", Helvetica, Arial, sans-serif;
+		}
+
+		img {
+			margin:1em;
+			border:1px solid rgba(232, 21, 125, 0.2);
+
+			width:40%;
+
+			image-rendering:pixelated;
+
+		}
+
+		canvas {
+			width: 100%;
+		}
+
+		#container {
+
+			padding:2em;
+			min-width:1450px;
+		}
+
+		#canvasContainer {
+			width:100%;
+			height:20em;
+		}
+
+		
+		.visualiserContainer {
+			position:relative;
+			top:5em;
+			width:582px;
+			float:left;
+			height:30em;
+		}
+
+		.visualiserContainer h3{
+			position:relative;
+			margin-top:-2em;
+		}
+
+		.visualiserContainer .fixture{
+			/*width:20px;*/
+			width:16px;
+			position:absolute;
+
+		}
+
+		#sideContainer {
+			top:8em;
+		}
+
+		.fixtureView {
+			position: relative;
+		}
+
+
+	</style>
+
+	<script>
+		// minified SVGFixtureView
+		(function(e){var t=function(){};var n=t.prototype;n.init=function(e,t){this.width=e;this.height=e;this.element=this.canvas=document.createElement("canvas");this.context=this.canvas.getContext("2d");this.fixtureWidth=20;this.fixtureEnabledStates=[];for(var n=0;n<e*t;++n){this.fixtureEnabledStates[n]=true}};n.disableFixture=function(e,t){this.fixtureEnabledStates[t*this.width+e]=false};var r=function(e,t,n){return"rgb("+e.toFixed(0)+","+t.toFixed(0)+","+n.toFixed(0)+")"};n.render=function(e){var t=e.canvas.width;var n=e.canvas.height;var i=e.getImageData(0,0,t,n).data;var s=this.context,o=this.canvas;s.fillStyle="black";s.clearRect(0,0,o.width,o.height);s.lineWidth=1;var u=7;var a=10;var f=-1;var l=1;for(var c=0;c<n;++c){for(var h=0;h<t;++h){var p=(c*t+h)*4;if(this.fixtureEnabledStates[c*t+h]){s.strokeStyle=r(i[p],i[p+1],i[p+2]);s.beginPath();s.moveTo(l*c+h*u,c*a);s.lineTo(l*c+h*u+f,c*a+a*.8);s.stroke()}}}};n.setPixel=function(e,t,n,r,i){this.fixtures[r][i].style.fill="rgb("+e+","+t+","+n+")"};e.HarpaCanvasFixtureView=(e.module||{}).exports=t})(this)
+
+	</script>
+
+	<script>
+
+		var sideViewImg = null;
+		var gameViewImg = null;
+
+
+		document.addEventListener("DOMContentLoaded", function() {
+
+			sideViewImg = document.getElementById("sideView");
+			gameViewImg = document.getElementById("gameView");
+
+			setInterval(updateSideView, 20);
+			setInterval(updateGameView, 20);
+
+			var harpaLts = {
+				front : {
+					width : 37,
+					height : 13
+				},
+				side : {
+					width : 39,
+					height : 9
+				}
+			};
+
+			fixturesFront = new HarpaCanvasFixtureView();
+			fixturesFront.init(harpaLts.front.width, harpaLts.front.height);
+			document.getElementById("frontContainer").appendChild(fixturesFront.element);
+
+			fixturesSide = new HarpaCanvasFixtureView();
+			fixturesSide.init(harpaLts.side.width, harpaLts.side.height);
+			document.getElementById("sideContainer").appendChild(fixturesSide.element);
+
+			// disable fixtures on side panel to match shape of building
+
+			for (var i=0; i < harpaLts.side.width; i++){
+				for (var j = 0; j < harpaLts.side.height; j++){
+					if (j > (2 + Math.floor(i / (i == 1 ? 5 : 6)))){
+						fixturesSide.disableFixture(i,j);
+					}
+
+				}
+			}
+
+			var frontCanvas = document.createElement("canvas");
+			var sideCanvas = document.createElement("canvas");
+
+			var frontCtx = frontCanvas.getContext("2d");
+			var sideCtx = sideCanvas.getContext("2d");
+
+			frontCanvas.width = harpaLts.front.width;
+			frontCanvas.height = harpaLts.front.height;
+
+			sideCanvas.width = harpaLts.side.width;
+			sideCanvas.height = harpaLts.side.height;
+
+			render();
+
+			function render() {
+
+				window.requestAnimationFrame(render);
+
+				frontCtx.drawImage(gameViewImg,0,0);
+				sideCtx.drawImage(sideViewImg,0,0);
+
+				fixturesFront.render(frontCtx);
+				fixturesSide.render(sideCtx);
+
+			};
+
+
+		});
+
+		function updateSideView() {
+
+			var url = document.location.hostname + "?method=getScoreCanvasSource";
+
+			var rq = new XMLHttpRequest();
+			rq.open("GET", url, true);
+			rq.onreadystatechange = function() {
+
+				switch(rq.readyState){
+					case 0: //Uninitialized
+					case 1: //Set up
+					case 2: //Sent
+					case 3: //Partly done
+						//: do nothing
+						break;
+					case 4: //Done
+						if(rq.status < 400) {
+							sideViewImg.src = rq.responseText;
+						}
+					break;
+				}
+			}
+			rq.send(null);
+
+		};
+
+		function updateGameView() {
+
+			var url = document.location.hostname + "?method=getGameCanvasSource";
+
+			var rq = new XMLHttpRequest();
+			rq.open("GET", url, true);
+			rq.onreadystatechange = function() {
+
+				switch(rq.readyState){
+					case 0: //Uninitialized
+					case 1: //Set up
+					case 2: //Sent
+					case 3: //Partly done
+						//: do nothing
+						break;
+					case 4: //Done
+						if(rq.status < 400) {
+							gameViewImg.src = rq.responseText;
+						}
+					break;
+				}
+			}
+			rq.send(null);
+
+
+		};
+
+	</script>
+</head>
+<body>
+	<div id="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Render Server Debugger</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div id="canvasContainer">
+					<div class="visualiserContainer" id="sideContainer">
+						<h3>Side Facade</h3>
+					</div>
+					<div class="visualiserContainer" id="frontContainer">
+						<h3>Front Facade</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Textures</h3>
+			</div>
+			<div class="col-md-12">
+				<img id="sideView" src=""/>
+				<img id="gameView" src=""/>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

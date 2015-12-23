@@ -1,0 +1,9 @@
+RewriteEngine On
+
+
+#RewriteRule common(.*)$ ../common$1 [L]
+RewriteRule play/(.*)$ ./$1 [L]
+RewriteRule play(.*)$ ./$1 [L]
+
+
+

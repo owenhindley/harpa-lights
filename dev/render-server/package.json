@@ -1,0 +1,25 @@
+{
+  "name": "Harpa-Lights-Render-server",
+  "version": "0.0.2",
+  "description": "",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/owenhindley/harpa-lights/"
+  },
+  "author": {
+    "name": "Owen Hindley"
+  },
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "node-gyp": "",
+    "winston": "",
+    "socket.io": "",
+    "nanotimer":"",
+    "zmq":"",
+    "msgpack5":"",
+    "artnet-node" : "",
+    "canvas" : ""
+  }
+}
