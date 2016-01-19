@@ -160,29 +160,48 @@ saverSock_from.connect(SCREENSAVER_SERVER_IP + ":" + AppConfig.PORT_SCREENSAVER_
 saverSock_to.bindSync(SCREENSAVER_SERVER_IP + ":" + AppConfig.PORT_SCREENSAVER_CMD);
 
 
+
 saverSock_from.on('message', function(msg){
 	
 	if (msg.length){
-
 			screensaver_image.src = msg;
-
 		try {
-
 			// draw front face
 			gameView.screensaverCtx.drawImage(screensaver_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
-
 			// draw side face
 			scoreView.screensaverCtx.drawImage(screensaver_image, 0,0,harpaFaces.side[0], harpaFaces.side[1], 0,0,harpaFaces.side[0], harpaFaces.side[1]);
 
 		} catch(e){
-
+			console.log(e);
 		}
-
 	}
-	
-
-	
+	// console.log(msg.length);
 });
+
+/*
+	Communication with Processing (sends raw byte data)
+*/
+
+var processing_from = zmq.socket("pull");
+var processing_image = new Image;
+
+processing_from.connect(SCREENSAVER_SERVER_IP + ":" + AppConfig.PORT_PROCESSING_IMG_SEND);
+processing_from.on('message', function(msg){
+
+	if (msg.length){
+		processing_image.src = msg;
+		try {
+			// draw front face
+			gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
+			// draw side face
+			scoreView.screensaverCtx.drawImage(processing_image, 0,0,harpaFaces.side[0], harpaFaces.side[1], 0,0,harpaFaces.side[0], harpaFaces.side[1]);
+
+		} catch(e){
+			console.log(e);
+		}
+	}
+});
+
 
 
 /* 
