@@ -13,8 +13,13 @@ var Scheduler = function() {
 
 	this.times = {
 
-		0.0 : Scheduler.MODE_SCREENSAVER
+		0.0 : Scheduler.MODE_GAME
 	}
+
+	// this.times = {
+
+	// 	0.0 : Scheduler.MODE_SHIMMER
+	// }
 
 
 }
