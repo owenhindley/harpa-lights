@@ -52,7 +52,21 @@ Otherwise please just zip up the creator tool with your code working inside and 
 ### Running the render-server
 You'll only need to do this if you're actually doing an installation in Harpa and need to output DMX.
 
-(coming soon)
+* Download the repository
+* (OSX - install Homebrew [optional, but it's much simpler than installing things manually, see below])
+* Install Cairo & its dependencies [here](http://cairographics.org/download/)
+* run `npm install` inside the `dev/render-server` folder
+* open a web browser, go to `127.0.0.1:8088?method=getCanvas`, and you should see the web debugging view, with the PONG logo running in the background + sparkles.
+
+If you get to this point, it means the render server is up and running, great! 
+
+Blank windows? That's because the render server is set to 'Screensaver Mode' in the Scheduler. Check `render-server/scheduler/Scheduler.js` and ensure that `this.times` has one entry only - `MODE_GAME`. This class allows you to specify games, screensavers etc to run at different times.
+
+In Game mode, you have two classes `HarpaGameViewPong.js` and `HarpaScoreViewPong.js` which maintain a pair of canvases for the large and small facades, respectively. You can go ahead and edit these classes to create your own games, see below.
+
+In Screensaver mode, the render server listens to incoming low-level network connections from the `visualiser-server`, which happens via [zero mq](http://zeromq.org/). 
+
+If you wanted, you could create another application (e.g. written in C++) that implemented the same zeromq interface to take the place of the visualiser server to extend the system further. Go crazy!
 
 ### Creating a game for Harpa
 The repository comes with two games - PONG and Breakout (all trademarks belong to their respective owners). 
