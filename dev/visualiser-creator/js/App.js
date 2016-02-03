@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var tempoChangeCallback = function() {
         document.getElementById("bpmValue").value = tempoSource.tempo;
     };
-    tempoSource.init(60, tempoChangeCallback);
+    tempoSource.init(120, tempoChangeCallback);
 
 
 
@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
         Swop out the class here for yours (inheriting from HarpaVisualiserBase)
         to test
     */
+    // visualiser = new SpriteVisualiser();
     visualiser = new HarpaTestVisualiser();
 
     // init with the light dimensions

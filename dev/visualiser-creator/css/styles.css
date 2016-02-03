@@ -57,6 +57,7 @@ body, html {
 canvas {
     display:block;
     width:100%;
+    image-rendering:pixelated;
 }
 
 #audioInput {

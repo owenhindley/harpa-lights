@@ -50,14 +50,16 @@
         var FIXTURE_HEIGHT = 10;
         var FIXTURE_SLANT_OFFSET = -1;
         var FIXTURE_ROW_SLANT_OFFSET = 1;
-
+        var r,g,b;
         for (var y = 0; y < canvasHeight; ++y) {
             for (var x = 0; x < canvasWidth; ++x) {
                 var i = (y * canvasWidth + x) * 4; //base index into image data array
 
                 if (this.fixtureEnabledStates[y * canvasWidth + x]) {
-
-                    context.strokeStyle = rgbToString(imgData[i], imgData[i+1], imgData[i+2]);
+                    r = imgData[i] * imgData[i+3]/255;
+                    g = imgData[i+1] * imgData[i+3]/255;
+                    b = imgData[i+2] * imgData[i+3]/255;
+                    context.strokeStyle = rgbToString(r,g,b);
 
                     context.beginPath();
                     context.moveTo(FIXTURE_ROW_SLANT_OFFSET * y + x * FIXTURE_WIDTH, y * FIXTURE_HEIGHT);
