@@ -24,8 +24,8 @@
 
         if (this.player.paused || this.player.ended) return false;
 
-        this.sideCtx.drawImage(this.player, 0, 0, this.faces.side.width, this.faces.side.height);
-        this.frontCtx.drawImage(this.player, 0, 0, this.faces.front.width, this.faces.front.height);
+        this.combCtx.drawImage(this.player, 0, 0, this.totalWidth, this.totalHeight);
+        this.drawToFaces(this.combinedCanvas);
 
         // See HarpaTestVisualiser.js for example of using beat and volume information
     };
