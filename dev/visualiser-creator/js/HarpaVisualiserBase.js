@@ -42,6 +42,14 @@
         this.frontCtx = frontCanvas.getContext("2d");
         this.sideCtx = sideCanvas.getContext("2d");
 
+        this.totalWidth = (this.faces.front.width + this.faces.side.width);
+        this.totalHeight = Math.max(this.faces.front.height, this.faces.side.height);
+
+        this.combinedCanvas = document.createElement("canvas");
+        this.combinedCanvas.width = this.totalWidth;
+        this.combinedCanvas.height = this.totalHeight;
+        this.combCtx = this.combinedCanvas.getContext("2d");
+
     };
 
 
@@ -55,6 +63,15 @@
 
         // override this method to store and use
         // signals from the audio visualiser
+
+    };
+
+    p.drawToFaces = function(aSourceCanvas) {
+
+        // draw combined over two canvases
+        this.frontCtx.drawImage(aSourceCanvas, this.faces.side.width, 0, this.faces.front.width, this.faces.front.height, 0,0,this.faces.front.width, this.faces.front.height);
+        this.sideCtx.drawImage(aSourceCanvas, 0, 0, this.faces.side.width, this.faces.side.height, 0,0,this.faces.side.width, this.faces.side.height);
+
 
     };
 
