@@ -1,0 +1,16 @@
+#N canvas 179 300 746 438 10;
+#X declare -path libs/mrpeach;
+#X obj 67 65 declare -path libs/mrpeach;
+#X obj 66 175 udpreceive 9997;
+#X obj 66 201 unpackOSC;
+#X obj 66 282 print tempo;
+#X obj 146 282 print loudness;
+#X obj 246 282 print rms-db;
+#X obj 336 282 print fft;
+#X obj 66 230 routeOSC /tempo-bang /loudness-change /rms-db /fft;
+#X connect 1 0 2 0;
+#X connect 2 0 7 0;
+#X connect 7 0 3 0;
+#X connect 7 1 4 0;
+#X connect 7 2 5 0;
+#X connect 7 3 6 0;
