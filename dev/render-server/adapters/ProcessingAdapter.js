@@ -20,7 +20,9 @@ p.getCanvas = function() { return this.canvas; };
 p.drawFromString = function(base64String){
 
 	var buf = new Buffer(base64String, 'base64'); // Ta-da
-	debugger;
+	// debugger;
+
+	
 
 };
 
