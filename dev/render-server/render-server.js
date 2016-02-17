@@ -130,7 +130,7 @@ function render() {
 		if (scheduler.mode == Scheduler.MODE_GAME){
 			gameView.render(game, gameMode);
 			scoreView.render(game, gameMode);
-		} else if (scheduler.mode == Scheduler.MODE_SCREENSAVER) {
+		} else if (scheduler.mode == Scheduler.MODE_SCREENSAVER || scheduler.mode == Scheduler.MODE_EXTERNAL) {
 			
 			gameView.render(game, "screensaver");
 			scoreView.render(game, "screensaver");
@@ -279,6 +279,10 @@ var server = http.createServer(function(request, response){
 
 			case "mode_screensaver":
 				scheduler.mode = Scheduler.MODE_SCREENSAVER;
+			break;
+
+			case "mode_external":
+				scheduler.mode = Scheduler.MODE_EXTERNAL;
 			break;
 
 		}
