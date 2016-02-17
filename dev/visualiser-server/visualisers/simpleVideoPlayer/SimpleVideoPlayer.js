@@ -12,13 +12,13 @@ var fs = require("fs");
 var VIDEOS_AVAILABLE = [
 	// "video-1",
 	// "video-2",
-	// "1",
+	"1",
 	// "2",
 	// "3",
 	// "4",
 	// "4738",
 	// "4821",
-	"Edu"
+	// "Edu"
 ];
 
 var SimpleVideoPlayer = function() {

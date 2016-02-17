@@ -1,0 +1,25 @@
+{
+  "name": "VisualiserProcess",
+  "version": "0.1.0",
+  "main": "index.html",
+  "window": {
+    "title" : "VisualiserProcess",
+    "toolbar": true,
+    "resizable": true,
+    "fullscreen": false,
+    "width": 800,
+    "height": 800
+  },
+  "dependencies": {
+    "winston": "",
+    "socket.io": "",
+    "canvas" : "",
+    "nanotimer":"",
+    "zmq":"",
+    "msgpack5":"",
+    "osc-min":"",
+    "requirejs":"",
+    "colourlovers":"",
+    "fluent-ffmpeg":""
+  }
+}

@@ -34,6 +34,9 @@ void draw() {
     image(img, 0, 0, width, height);  
   }
   
+  
+ // background(255,150,0);
+  
   // We need a buffered image to do the JPG encoding
  
   BufferedImage b = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);

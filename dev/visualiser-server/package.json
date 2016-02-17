@@ -11,6 +11,15 @@
   "author": {
     "name": "Owen Hindley"
   },
+  "main": "html/process-main.html",
+  "window": {
+    "title" : "Visualiser Server",
+    "toolbar": true,
+    "resizable": true,
+    "fullscreen": false,
+    "width": 800,
+    "height": 800
+  },
   "readmeFilename": "README.md",
   "dependencies": {
     "winston": "",

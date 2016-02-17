@@ -23,6 +23,10 @@ var postProcessing = new VisualiserPostProcessing();
 
 var socket_address = null;
 
+var reScaleVolume = false;
+var swopChannels = false;
+var beatDecay = false;
+
 /*
 	Commands from host process
 */
@@ -34,10 +38,23 @@ process.on("message", function(message) {
 	switch(message.cmd){
 
 		case "init":
-			visualiser.init(message.front.width, message.front.height, message.side.width, message.side.height);
+
+
+
+			if (message.options){
+				reScaleVolume = message.options.reScaleVolume || false;
+				swopChannels = message.options.swopChannels || false;
+				beatDecay = message.options.beatDecay || false;
+			} else {
+				message.options = {};
+			}
+			
+
+			visualiser.init(message.front.width, message.front.height, message.side.width, message.side.height, message.options);
 			postProcessing.init(message.front.width, message.front.height, message.side.width, message.side.height, message.options);
 
-			
+			setupAudio();
+
 		break;
 
 		case "connect":
@@ -70,42 +87,94 @@ process.on("message", function(message) {
 
 });
 
-/*
-	Audio data
-*/
 
-socket_audio_data_in.connect("tcp://127.0.0.1:" + AppConfig.PORT_AUDIO_DATA_PUB);
+var setupAudio = function() {
 
-socket_audio_data_in.subscribe("tempoBang");
-socket_audio_data_in.subscribe("rmsLevel");
-socket_audio_data_in.subscribe("fft");
-socket_audio_data_in.subscribe("loudnessChange");
 
-socket_audio_data_in.on("message", function(subject, message) {
+	/*
+		Audio data
+	*/
 
-	if (visualiser){
+	// this is silly, need to fix this!
+	var beatChannel = (swopChannels) ? 2 : 1;
+	var volumeChannel = (swopChannels) ? 1 : 2;
 
-		var channel = subject.toString();
-		switch(channel){
+	var currentBeatValue = 0;
 
-			case "tempoBang":
-				visualiser.signal(1, 1);
-			break;
+	if (beatDecay){
 
-			case "rmsLevel":
-				visualiser.signal(2, parseFloat(message.toString()));
-			break;
+		var updateBeatValue = function() {
+			currentBeatValue *= 0.9;
+			if (visualiser){
+				visualiser.signal(beatChannel, currentBeatValue);
+			}
+		};
 
-			case "fft":
-				visualiser.signal(3, message.toString());
-			break;
+
+		setInterval(updateBeatValue.bind(this), 10);
+	}
+
+	var currentVolumeValue = 0;
+
+	if (reScaleVolume){
+		var updateVolumeValue = function() {
+			if (visualiser){
+				// console.log("singalling : " + volumeChannel + ", " + currentVolumeValue * 20000);
+				visualiser.signal(volumeChannel, currentVolumeValue * 20000);
+			}
+		};
+		setInterval(updateVolumeValue.bind(this), 20);
+	}
+
+
+	socket_audio_data_in.connect("tcp://127.0.0.1:" + AppConfig.PORT_AUDIO_DATA_PUB);
+
+	socket_audio_data_in.subscribe("tempoBang");
+	socket_audio_data_in.subscribe("rmsLevel");
+	socket_audio_data_in.subscribe("fft");
+	socket_audio_data_in.subscribe("loudnessChange");
+
+	socket_audio_data_in.on("message", function(subject, message) {
+
+		if (visualiser){
+
+			var channel = subject.toString();
+			switch(channel){
+
+				case "tempoBang":
+
+					if (beatDecay){
+						currentBeatValue = 1;
+					} else {
+						visualiser.signal(beatChannel, 1);
+					}
+					
+				break;
+
+				case "rmsLevel":
+					var volumeLevel = parseFloat(message.toString());
+					if (reScaleVolume){
+						currentVolumeValue = volumeLevel;
+					} else {
+						visualiser.signal(volumeChannel, volumeLevel);
+					}
+				break;
+
+				case "fft":
+					visualiser.signal(3, message.toString());
+				break;
+
+			}
 
 		}
+		
 
-	}
-	
+	});
 
-})
+
+}
+
+
 
 /*
 	DEBUGGING

@@ -22,9 +22,11 @@ p.init = function(frontWidth, frontHeight, sideWidth, sideHeight, aOptions) {
 	var frontCanvas = new Canvas();
 	var sideCanvas = new Canvas();
 
-
-	frontCanvas.antialias = "none";
-	sideCanvas.antialias = "none";
+	if (!aOptions.antialias){
+		frontCanvas.antialias = "none";
+		sideCanvas.antialias = "none";
+	}
+	
 
 	frontCanvas.width = frontWidth;
 	frontCanvas.height = frontHeight;

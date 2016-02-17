@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Harpa/Sónar Visualiser Dev Environment</title>
+        <meta charset="utf-8"></meta>
+
+        <link rel="stylesheet" href="css/styles.css"/>
+        <script src="//localhost:35729/livereload.js"></script>
+
+        <script src="js/HarpaVisualiserBase.js"></script>
+        <script src="js/MP3AudioSource.js"></script>
+        <script src="js/TempoSource.js"></script>
+
+        <script src="js/HarpaSVGFixtureView.js"></script>
+        <script src="js/HarpaCanvasFixtureView.js"></script>
+
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- Custom Visualisers -->
+        <!-- -->
+        <!-- Add the path to your custom visualiser JS class here -->
+        <!-- -->
+        <script src="js/visualisers/HarpaVideoVisualiser.js"></script>
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+
+        <script src="js/App.js"></script>
+        <script>
+        // super-dirty placing it here, but...
+
+        var fileInput;
+        document.addEventListener("DOMContentLoaded", function() {
+
+            fileInput = document.body.querySelector("#videoSelector");
+            fileInput.addEventListener("change", function() {
+                try {
+                    var file = fileInput.files[0];
+                    var fileURL = URL.createObjectURL(file);
+                    var videoElement = document.body.querySelector("video");
+                    videoElement.setAttribute("src", fileURL);
+                } catch(e){
+                    console.error(e);
+                }
+                
+
+            });
+
+
+        });
+
+        </script>
+    </head>
+
+    <body>
+        <div id="container">
+            <h3>Harpa Sónar Visualiser Test Environment</h3>
+            <div id="canvasContainer">
+                    <div class="visualiserContainer" id="sideContainer">
+                        <h3>Side Facade</h3>
+                    </div>
+                    <div class="visualiserContainer" id="frontContainer">
+                        <h3>Front Facade</h3>
+                    </div>
+            </div>
+            <h3>Textures</h3>
+            <div id="textureContainer">
+                <div id="sideTextureContainer">
+
+                </div>
+                <div id="frontTextureContainer">
+
+                </div>
+            </div>
+            <div id="audioInput">
+                <h6>Test channel sources:</h6>
+                <p><strong>Channel 1 / Volume signal</strong> : Replace the video with your own</p>
+                <input id="videoSelector" type="file" accept="video/*"/><br/>
+                <!-- 
+                    Samurai Pizza Cats intro found on : http://html5doctor.com/demos/video-canvas-magic/video.mp4
+                -->
+                <video id="player" src="./assets/video.mp4" type="video/mp4" width="320" height="240" loop controls>
+                </video>
+                <br/>
+                <p><strong>Channel 2 / Tempo pulse</strong> : Tap in or type BPM below</p>
+                <input type="text" id="bpmValue" value="60"></input>
+                <button id="tapTempo">Tap BPM</button>
+            </div>
+            <div id="feedback">
+                <p id="debugOutput"></p>
+            </div>
+        </div>
+
+        
+    </body>
+
+</html>

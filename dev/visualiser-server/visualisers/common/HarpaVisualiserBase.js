@@ -29,8 +29,8 @@ p.init = function(frontWidth, frontHeight, sideWidth, sideHeight) {
 	var frontCanvas = new Canvas();
 	var sideCanvas = new Canvas();
 
-	frontCanvas.antialias = "none";
-	sideCanvas.antialias = "none";
+	// frontCanvas.antialias = "none";
+	// sideCanvas.antialias = "none";
 
 	frontCanvas.width = frontWidth;
 	frontCanvas.height = frontHeight;
@@ -46,6 +46,12 @@ p.init = function(frontWidth, frontHeight, sideWidth, sideHeight) {
 	this.frontCtx = frontCanvas.getContext("2d");
 	this.sideCtx = sideCanvas.getContext("2d");
 
+	this.frontCtx.antialias = "none";
+	this.sideCtx.antialias = "none";
+
+	// this.frontCtx.patternQuality = "best";
+	// this.sideCtx.patternQuality = "best";
+
 	// get references to front & side canvases
 	// for when we disconnect
 	this.baseFrontCanvas = this.frontCanvas;
@@ -54,6 +60,15 @@ p.init = function(frontWidth, frontHeight, sideWidth, sideHeight) {
 	// this canvas gets used to export out the image buffer data
 	this.exportCanvas = new Canvas(sideCanvas.width + frontCanvas.width, Math.max(sideCanvas.height, frontCanvas.height));
 	this.exportCtx = this.exportCanvas.getContext('2d');
+
+
+	this.totalWidth = (this.faces.front.width + this.faces.side.width);
+	this.totalHeight = Math.max(this.faces.front.height, this.faces.side.height);
+
+	this.combinedCanvas = new Canvas();
+	this.combinedCanvas.width = this.totalWidth;
+	this.combinedCanvas.height = this.totalHeight;
+	this.combCtx = this.combinedCanvas.getContext("2d");
 
 };
 
@@ -69,6 +84,16 @@ p.getBuffer = function() {
 	this.exportCtx.drawImage(this.faces.front,this.faces.side.width+1,0);
 	return this.exportCanvas.toBuffer();
 };
+
+
+p.drawToFaces = function(aSourceCanvas) {
+	// draw combined over two canvases
+	this.frontCtx.drawImage(aSourceCanvas, this.faces.side.width, 0, this.faces.front.width, this.faces.front.height, 0,0,this.faces.front.width, this.faces.front.height);
+	this.sideCtx.drawImage(aSourceCanvas, 0, 0, this.faces.side.width, this.faces.side.height, 0,0,this.faces.side.width, this.faces.side.height);
+
+
+};
+
 
 p.signal = function(channel, value) {
 
