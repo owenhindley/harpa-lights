@@ -3,7 +3,8 @@ var Canvas = require("canvas");
 var Image = Canvas.Image;
 var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
 var AppConfig = require("../../../common/Config.js");
-
+var osc = require("osc-min");
+var dgram = require("dgram");
 /*
 
 	Example simple Visualiser class
@@ -22,11 +23,10 @@ var HarpaSyphonVisualiser = function() {
 		Communication with Processing (sends raw byte data)
 	*/
 
-
 };
 
 var p = HarpaSyphonVisualiser.prototype = new HarpaVisualiserBase();
- var s = HarpaVisualiserBase.prototype;
+var s = HarpaVisualiserBase.prototype;
 
 p.init = function(frontWidth, frontHeight, sideWidth, sideHeight, aOptions) {
 	s.init.call(this, frontWidth, frontHeight, sideWidth, sideHeight, aOptions);
@@ -53,6 +53,7 @@ p.init = function(frontWidth, frontHeight, sideWidth, sideHeight, aOptions) {
 	}.bind(this));
 
 
+
 };
 
 p.render = function() {
@@ -71,6 +72,11 @@ p.signal = function(channel, value) {
 	if (channel == 2){
 		this.currentVolume = value;
 	}
+};
+
+p.cleanup = function() {
+
+
 };
 
 module.exports = HarpaSyphonVisualiser;
