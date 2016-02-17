@@ -28,6 +28,7 @@ Scheduler.MODE_BLACKOUT = "schedulerModeBlackout";
 Scheduler.MODE_SHIMMER = "schedulerModeShimmer";
 Scheduler.MODE_GAME = "schedulerModeGame";
 Scheduler.MODE_SCREENSAVER = "schedulerModeScreensaver";
+Scheduler.MODE_EXTERNAL = "schedulerModeExternal";	// this takes in a ZMQ image feed and overrides the screensaver (e.g. syphon)
 
 var p = Scheduler.prototype;
 
