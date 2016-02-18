@@ -103,4 +103,11 @@ p.signal = function(channel, value) {
 };
 
 
+p.cleanup = function() {
+
+	// any cleanup code here, e.g. close network ports
+
+};
+
+
 module.exports = HarpaVisualiserBase;

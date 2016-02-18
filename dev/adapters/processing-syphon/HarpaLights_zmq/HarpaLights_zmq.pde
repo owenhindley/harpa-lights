@@ -11,7 +11,7 @@ HarpaImageSender sender;
 void settings() {
   size(harpaWidth, harpaHeight, P3D);
   PJOGL.profile = 1;
-  sender = new HarpaImageSender(3101, harpaWidth, harpaHeight);
+  sender = new HarpaImageSender(3100, harpaWidth, harpaHeight);
   //byteBuffer = ByteBuffer.allocate(harpaWidth*harpaHeight * 4);
   //imgData = new int[harpaWidth * harpaHeight]; 
 }

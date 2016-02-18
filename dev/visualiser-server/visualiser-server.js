@@ -162,6 +162,7 @@ debugSocketServer.on("connection", function(socket){
 
 	socket.on("startCycle", function() {
 		console.log("** SCREENSAVER CYCLE STARTED **");
+		currentVisualiserIndex = 0;
 		nextVisualiser();
 	});
 

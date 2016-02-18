@@ -114,15 +114,15 @@ var VisConfig = [
 			ghostEnabled : true,
 			ghostAmount : 0.5
 		} },
-	{ name : "Owen_simpleBeatLinesVideoMask", path : "./visualisers/2015/simpleBeatLines/SimpleBeatVideoMask.js" }
-	/*
+	{ name : "Owen_simpleBeatLinesVideoMask", path : "./visualisers/2015/simpleBeatLines/SimpleBeatVideoMask.js" },
+	
 	{ name : "ResolumeTrack1", path : "./visualisers/syphon/HarpaResolumeVisualiser.js", options : {
 		resolumeTrack : 1
 	}},
 	{ name : "ResolumeTrack2", path : "./visualisers/syphon/HarpaResolumeVisualiser.js", options : {
 		resolumeTrack : 2
 	}}
-	*/
+	
 
 	// { name : "rainbow", path : "./visualisers/rainbowFFT/RainbowVisualiser.js"},
 	// { name : "rainbowShapes", path : "./visualisers/rainbowShapes/RainbowShapes.js"},

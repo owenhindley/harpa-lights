@@ -13,7 +13,7 @@ var Scheduler = function() {
 
 	this.times = {
 
-		0.0 : Scheduler.MODE_EXTERNAL
+		0.0 : Scheduler.MODE_SCREENSAVER
 	}
 
 	// this.times = {
