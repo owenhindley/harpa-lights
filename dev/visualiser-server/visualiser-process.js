@@ -119,8 +119,8 @@ var setupAudio = function() {
 	if (reScaleVolume){
 		var updateVolumeValue = function() {
 			if (visualiser){
-				// console.log("singalling : " + volumeChannel + ", " + currentVolumeValue * 20000);
-				visualiser.signal(volumeChannel, currentVolumeValue * 20000);
+				 // console.log("singalling : " + volumeChannel + ", " + currentVolumeValue * 20000);
+				visualiser.signal(volumeChannel, currentVolumeValue * 5000);
 			}
 		};
 		setInterval(updateVolumeValue.bind(this), 20);
