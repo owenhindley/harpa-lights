@@ -185,17 +185,17 @@ var Color = net.brehaut.Color;
                 var opacity = Math.max(0, this.beat.matrix[row][col]);
                 var color = Color([255, 255, 255]).setAlpha(opacity);
 
-                this.frontCtx.fillStyle = color;
+                this.frontCtx.fillStyle = color.toString();
                 this.frontCtx.fillRect(col, row, 1, 1);
 
-                this.sideCtx.fillStyle = color;
+                this.sideCtx.fillStyle = color.toString();
                 this.sideCtx.fillRect(this.faces.side.width - col, row, 1, 1);
 
                 // Counter-lines
                 if (numBars % 96 >= 64) {
                   var counterLineColor = color.setAlpha(Math.pow(opacity, 2));
-                  this.frontCtx.fillStyle = counterLineColor;
-                  this.sideCtx.fillStyle = counterLineColor;
+                  this.frontCtx.fillStyle = counterLineColor.toString();
+                  this.sideCtx.fillStyle = counterLineColor.toString();
                   this.frontCtx.fillRect(this.faces.front.width - col, row, 1, 1);
                   this.sideCtx.fillRect(col, row, 1, 1);
                 }
@@ -208,11 +208,11 @@ var Color = net.brehaut.Color;
                   vertColor = vertColor.darkenByAmount(0.25 + 0.25 * Math.sin(numBars16 / 20));
 
                   if (col % 8 === numBars16 % 8) {
-                    this.frontCtx.fillStyle = vertColor;
+                    this.frontCtx.fillStyle = vertColor.toString();
                     this.frontCtx.fillRect(0, col, this.faces.front.width, 1);
                   }
                   else if (Math.abs(col % 8 - (numBars16 % 8)) === 4) {
-                    this.sideCtx.fillStyle = vertColor;
+                    this.sideCtx.fillStyle = vertColor.toString();
                     this.sideCtx.fillRect(0, this.faces.side.height - col, this.faces.side.width, 1);
                   }
                 }

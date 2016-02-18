@@ -37,20 +37,19 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
 
         this.frontCtx.save();
 
-        
-
+        // this.frontCtx.globalCompositeOperation = "source-over";
+        // this.frontCtx.fillStyle = "black";
+        // this.frontCtx.fillRect(0,0,this.faces.front.width,this.faces.front.height);
         this.frontCtx.clearRect(0,0,this.faces.front.width,this.faces.front.height);
 
         if (this.blocks.length == 0)
             this.blocks = this.createBlocks();
 
-        
-
-        
 
         this.frontCtx.globalCompositeOperation = "difference";
         for (var i=0;i<this.blocks.length;i++){
-            this.frontCtx.fillStyle = 'rgba('+this.blocks[i].color[0]+', '+this.blocks[i].color[1]+', '+this.blocks[i].color[2]+',1)';
+            // this.frontCtx.fillStyle = 'rgba('+this.blocks[i].color[0]+', '+this.blocks[i].color[1]+', '+this.blocks[i].color[2]+',1)';
+            this.frontCtx.fillStyle = "white";
             var xMod = Math.sin(((i-this.blocks.length) / this.blocks.length) * Math.PI) * this.currentBeatValue * 40 / 13;
             var yMod = Math.cos(((i-this.blocks.length) / this.blocks.length) * Math.PI) * this.currentBeatValue * 50 / 13;
 
@@ -61,11 +60,11 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
 
             // this.blocks[i].scale = yMod;
             this.frontCtx.save();
-            this.frontCtx.translate(this.blocks[i].x + this.blocks[i].w * .5 , this.blocks[i].y + this.blocks[i].h * .5);
-            // this.frontCtx.translate(this.faces.front.width/2, this.faces.front.height/2);
+            // this.frontCtx.translate(this.blocks[i].x + this.blocks[i].w * .5 , this.blocks[i].y + this.blocks[i].h * .5);
+            // // this.frontCtx.translate(this.faces.front.width/2, this.faces.front.height/2);
             
-            this.frontCtx.scale(this.blocks[i].scale + this.beatHist[i * 2], this.blocks[i].scale + this.beatHist[i*2]);
-            this.frontCtx.rotate(this.blocks[i].scale);
+            // this.frontCtx.scale(this.blocks[i].scale + this.beatHist[i * 2], this.blocks[i].scale + this.beatHist[i*2]);
+            // this.frontCtx.rotate(this.blocks[i].scale);
             
             
             
@@ -115,8 +114,8 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
         this.sideCtx.save();
 
         
-
-        this.sideCtx.clearRect(0,0,this.faces.side.width,this.faces.side.height);
+        this.sideCtx.fillStyle = "black";
+        this.sideCtx.fillRect(0,0,this.faces.side.width,this.faces.side.height);
 
         if (this.sideBlocks.length == 0)
             this.sideBlocks = this.createSideBlocks();
@@ -132,7 +131,8 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
         this.sideCtx.globalCompositeOperation = "color";
 
         for (var i=0;i<this.sideBlocks.length;i++){
-            this.sideCtx.fillStyle = 'rgba('+this.sideBlocks[i].color[0]+', '+this.sideBlocks[i].color[1]+', '+this.sideBlocks[i].color[2]+',1)';
+            // this.sideCtx.fillStyle = 'rgba('+this.sideBlocks[i].color[0]+', '+this.sideBlocks[i].color[1]+', '+this.sideBlocks[i].color[2]+',1)';
+            this.sideCtx.fillStyle = "white";
             var xMod = Math.sin(((i-this.sideBlocks.length) / this.sideBlocks.length) * Math.PI) * this.counter;
             var yMod = Math.cos(((i-this.sideBlocks.length) / this.sideBlocks.length) * Math.PI) * this.currentBeatValue * 50 / 13;
 
@@ -148,10 +148,6 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
             
             this.sideCtx.scale(this.sideBlocks[i].scale + this.beatHist[i], this.sideBlocks[i].scale + this.beatHist[i]);
             this.sideCtx.rotate(this.sideBlocks[i].scale * 2);
-            
-            
-            
-
             
             // this.frontCtx.fillStyle = 'rgba('+Math.floor(Math.random() * 250)+', '+Math.floor(Math.random() * 255)+', '+Math.floor(Math.random() * 255)+',1.0)';
             this.sideCtx.fillRect(this.sideBlocks[i].w/-2, this.sideBlocks[i].h/-2, this.sideBlocks[i].w, this.sideBlocks[i].h);

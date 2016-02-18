@@ -1,6 +1,6 @@
 var HarpaVisualiserBase = require("../../../common/HarpaVisualiserBase.js");
 var fs = require("fs");
-
+var Canvas = require("canvas");
     /*
 
         Example simple Visualiser class
@@ -9,7 +9,7 @@ var fs = require("fs");
 
     var UPDATEINTERVAL = 30;
     var PLAYBACK_FRAME_INTERVAL = 20;
-    var NUM_WALKERS = 5;
+    var NUM_WALKERS = 1;
 
     var DATA_LIST = [
         "walk1"
@@ -31,7 +31,7 @@ var fs = require("fs");
 
         this.recordingFileName = "kinectRecording";
 
-       
+        this.stars = [];
 
     };
 
@@ -41,19 +41,19 @@ var fs = require("fs");
     p.init = function(frontWidth, frontHeight, sideWidth, sideHeight) {
         s.init.call(this, frontWidth, frontHeight, sideWidth, sideHeight);
 
-        this.modeXY = true;
+        this.modeXY = false;
         this.blobSize = 0.5;
 
         this.liveMode = false;
 
-        this.posX = sideWidth * 0.25;
+        this.posX = sideWidth * 0.55;
         this.posY = frontHeight/2;
 
         this.kinectOffSetX = 0;
         this.kinectOffSetY = 0;
-        this.kinectOffSetZ = -2;
+        this.kinectOffSetZ = 0;
 
-        this.scaleX = 10;
+        this.scaleX = 15;
         this.scaleY = 10;
 
         this.playbackSrc = DATA_LIST[0];
@@ -67,9 +67,25 @@ var fs = require("fs");
         for (var i=0; i< NUM_WALKERS; i++){ this.walkerBeats[i] = 0; }
  
 
-        this.playbackData = JSON.parse(fs.readFileSync(__dirname + "/kinectData/walk1.json"));
+        this.playbackData = JSON.parse(fs.readFileSync(__dirname + "/kinectData/falling.json"));
         console.log(this.playbackData.length);
         this.playbackTime = 0;
+
+        this.ghostCanvas = new Canvas();
+        this.ghostCanvas.width = this.totalWidth;
+        this.ghostCanvas.height = this.totalHeight;
+        this.ghostCtx = this.ghostCanvas.getContext("2d");
+
+
+        for (var i =0; i < this.totalHeight; i++){
+            this.stars.push({
+                x  : Math.floor(Math.random() * this.totalWidth),
+                y : Math.floor(Math.random() * this.totalHeight),
+                speed : Math.random() * 3,
+                beat : 0
+            });
+        }
+
 
     };
 
@@ -80,6 +96,10 @@ var fs = require("fs");
 
         this.combCtx.fillStyle = "black";
         this.combCtx.fillRect(0,0,this.totalWidth, this.totalHeight);
+
+        this.combCtx.globalAlpha = 0.2;
+        this.combCtx.drawImage(this.ghostCanvas, 1,0, this.totalWidth-1, this.totalHeight, 0,0,this.totalWidth-1, this.totalHeight);
+        this.combCtx.globalAlpha = 1.0;
 
 
         this.combCtx.fillStyle = "white";
@@ -102,7 +122,8 @@ var fs = require("fs");
             var localIndex = Math.floor(this.playbackIndex + (i/NUM_WALKERS) * this.playbackData.length);
             localIndex = localIndex % this.playbackData.length;
             var moveData = this.playbackData[localIndex].data;
-            offsetX = (i/NUM_WALKERS) * this.totalWidth;
+            // offsetX = (i/NUM_WALKERS) * this.totalWidth;
+            offsetX = this.totalWidth * 0.75;
             var blobSize = this.blobSize + this.walkerBeats[i];
             for (var idx in moveData){
                 if (this.modeXY){
@@ -126,7 +147,20 @@ var fs = require("fs");
 
         }
         
-       
+        this.ghostCtx.drawImage(this.combinedCanvas, 0,0,this.totalWidth,this.totalHeight);
+
+        // draw stars
+       for (var i=0; i < this.stars.length; i++){
+            var star = this.stars[i];
+            this.combCtx.fillStyle = "white";
+            this.combCtx.globalAlpha = star.beat;
+            this.combCtx.fillRect(star.x, star.y, 1,1);
+            star.x -= star.speed;
+            if (star.x < 0){
+                star.x = this.totalWidth;
+            }
+            this.combCtx.globalAlpha = 1.0;
+        }
 
         this.drawToFaces(this.combinedCanvas);
 
@@ -145,7 +179,10 @@ var fs = require("fs");
         
 
         for (var i=0; i < NUM_WALKERS; i++){
-            this.walkerBeats[i] *= 0.95;
+            this.walkerBeats[i] *= 0.90;
+        }
+        for (var i=0; i < this.stars.length; i++){
+            this.stars[i].beat *= 0.90;
         }
         
 
@@ -164,7 +201,11 @@ var fs = require("fs");
             if (value > 0.5){
                 this.activeWalker = Math.floor(Math.random() * NUM_WALKERS);
                 this.walkerBeats[this.activeWalker] = 1;
-                // console.log(this.activeWalker);
+                
+                var star = this.stars[Math.floor(Math.random() * this.stars.length)];
+                if (star){
+                    star.beat = 1;
+                }
             }
         }
     };

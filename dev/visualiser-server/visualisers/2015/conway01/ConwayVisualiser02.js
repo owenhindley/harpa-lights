@@ -44,7 +44,7 @@ var ConwayVisualiser = function() {
 	];
 
 	this.gridSize = 10;
-	this.defaultSeedAmount = 10;
+	this.defaultSeedAmount = 20;
 
 	this.perlinNoise = new SimplexNoise();
 	this.perlinNoiseIndex = 0;
@@ -80,7 +80,7 @@ var ConwayVisualiser = function() {
 			}.bind(this));
 
 
-	}.bind(this), 20 * 1000);
+	}.bind(this), 1 * 1000);
 	
 
 }
@@ -148,7 +148,7 @@ p.render = function() {
 	}
 
 	// tail off beat values
-	// this.currentBeatValue *= 0.9;
+	this.currentBeatValue *= 0.8;
 
 	// render perlin texture
 	var noisevalue = 0;
@@ -256,15 +256,23 @@ p.render = function() {
 	// }
 
 	// draw beat global dim
-	this.frontCtx.globalAlpha = 0.5 - (this.currentBeatValue / 2.0);
+	this.frontCtx.globalAlpha = 0.2 - (Math.pow(this.currentBeatValue, 4) * 0.8);
 	this.frontCtx.fillStyle = "black";
 	this.frontCtx.fillRect(0,0, this.faces.front.width, this.faces.front.height);
 	this.frontCtx.globalAlpha = 1.0;
 
-	this.sideCtx.globalAlpha = 0.5 - (this.currentBeatValue / 2.0);
+	this.sideCtx.globalAlpha = 0.2 - (Math.pow(this.currentBeatValue, 4) * 0.8);
 	this.sideCtx.fillStyle = "black";
 	this.sideCtx.fillRect(0,0, this.faces.side.width, this.faces.side.height);
 	this.sideCtx.globalAlpha = 1.0;
+
+	// draw beat ball
+	this.frontCtx.globalCompositeOperation = "difference";
+	this.frontCtx.beginPath();
+	this.frontCtx.fillStyle = "white";
+	this.frontCtx.arc(this.faces.front.width/2, this.faces.front.height/2, Math.pow(this.currentBeatValue, 4) * this.faces.front.width * 4, 0, Math.PI * 2, 0);
+	this.frontCtx.fill();
+	this.frontCtx.globalCompositeOperation = "source-over";
 
 };
 
@@ -397,7 +405,7 @@ p.signal = function(channel, value) {
 		this.currentBeatValue = value;
 
 		if (this.beatFlip)
-			this.seed(this.defaultSeedAmount * this.currentVolume * 5.0);
+			this.seed(this.defaultSeedAmount);
 		this.beatFlip = !this.beatFlip;
 	}
 
