@@ -22,10 +22,10 @@ var VisConfig = [
 	{ name : "Owen_Sprite", path : "./visualisers/2016/Owen/Sprites/SpriteVisualiserTween.js", options : { reScaleVolume : true, swopChannels : true, beatDecay : true }},
 	{ name : "Owen_conway02", path : "./visualisers/2015/conway01/ConwayVisualiser02.js", 
 		options : { 
-			enableBrightness : true,
-			brightnessAmount : 0.05, 
-			ghostEnabled : false,
-			ghostAmount : 0.5
+			// enableBrightness : true,
+			// brightnessAmount : 0.15, 
+			// ghostEnabled : true,
+			// ghostAmount : 0.5
 		}},
 	{ name : "Owen_simpleBeatBar", path : "./visualisers/2015/simpleBeatBar/SimpleBeatBar.js", 
 		options : { 

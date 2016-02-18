@@ -20,11 +20,18 @@ var VisConfig = [
 	{ name : "Owen_Bird", path : "./visualisers/2016/Owen/Kinect/HarpaKinectBird.js", options : { reScaleVolume : true, swopChannels : true, beatDecay : true }},
 	{ name : "Owen_Falling", path : "./visualisers/2016/Owen/Kinect/HarpaKinectFalling.js", options : { reScaleVolume : true, swopChannels : true, beatDecay : true }},
 	{ name : "Owen_Sprite", path : "./visualisers/2016/Owen/Sprites/SpriteVisualiserTween.js", options : { reScaleVolume : true, swopChannels : true, beatDecay : true }},
-	{ name : "Owen_conway02", path : "./visualisers/2015/conway01/ConwayVisualiser02.js", 
+	{ name : "Owen_conway01", path : "./visualisers/2015/conway01/ConwayVisualiser01.js", 
 		options : { 
 			enableBrightness : true,
-			brightnessAmount : 0.05, 
-			ghostEnabled : false,
+			brightnessAmount : 0.15, 
+			ghostEnabled : true,
+			ghostAmount : 0.5
+		}},
+	{ name : "Owen_conwayVideoMask", path : "./visualisers/2015/conway01/ConwayVideoMask.js", 
+		options : { 
+			enableBrightness : true,
+			brightnessAmount : 0.15, 
+			ghostEnabled : true,
 			ghostAmount : 0.5
 		}},
 	{ name : "Owen_simpleBeatBar", path : "./visualisers/2015/simpleBeatBar/SimpleBeatBar.js", 
