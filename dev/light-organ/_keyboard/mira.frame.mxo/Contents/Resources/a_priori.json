@@ -1,0 +1,230 @@
+{
+    "live.*":
+    {
+        "special_cb":
+        {
+            "distance": ["DistGetArgc", "DistGetArgv", "DistSetArgs"],
+            "value":    ["ValueGetArgc", "ValueGetArgv", "ValueSetArgs"]
+        },
+        "buddies":
+        {
+            "value": ["distance"],
+            "distance": ["value"]
+        },
+        "xebra_attrs":
+        {
+            "mod":      "distance"
+        }
+    },
+
+    "live.text|live.tab":
+    {
+        "xebra_attrs":
+        {
+            "mod":      "value"
+        }
+    },
+
+    "live.text":
+    {
+        "special_cb":
+        {
+            "distance": ["DistGetArgc", "DistGetArgv", "LiveTextSetArgs"]
+        }
+    },
+
+	"live.grid":
+    {
+        "special_cb":
+        {
+            "distance": ["LiveParamGetArgc", "LiveParamGetArgv", "LiveParamSetArgs"],
+			"touchy" : ["NOOPGetArgc", "NOOPGetArgv", "AttrSetArgs"]
+        },
+		"attr_flags":
+		{
+			"touchy": 2
+		},
+		"buddies":
+		{
+			"touchy": ["distance"]
+		}
+    },
+
+    "fpic":
+    {
+        "buddies":
+        {
+            "autofit": ["destrect"],
+            "pic" : ["destrect"]
+        }
+    },
+
+    "button":
+    {
+        "special_cb":
+        {
+            "value":    ["ButtonGetArgc", "ButtonGetArgv", "ButtonSetArgs"]
+        },
+        "xebra_attrs":
+        {
+            "mod":      "value"
+        }
+    },
+
+    "toggle|number|flonum|kslider|swatch|umenu":
+    {
+        "special_cb":
+        {
+            "distance": ["NOOPGetArgc", "NOOPGetArgv", "NOOPSetArgs"],
+            "value":    ["ParamGetArgc", "ParamGetArgv", "ParamSetArgs"]
+        },
+        "xebra_attrs":
+        {
+            "mod":      "value"
+        }
+    },
+    
+    "umenu":
+    {
+        "buddies":
+        {
+            "items":        ["value"],
+            "menumode":     ["value"]   
+        }
+    },
+
+    "kslider":
+    {
+        "buddies":
+        {
+            "mode":     ["value"],
+            "value":    ["value"]
+        }
+    },
+
+    "slider|dial|gain~":
+    {
+        "special_cb":
+        {
+            "value":    ["NOOPGetArgc", "NOOPGetArgv", "NOOPSetArgs"],
+            "distance": ["ParamGetArgc", "ParamGetArgv", "ParamSetArgs"]
+        },
+        "xebra_attrs":
+        {
+            "mod":      "distance"
+        }
+    },
+
+    "rslider|multislider":
+    {
+        "special_cb":
+        {
+            "distance": ["ParamGetArgc", "ParamGetArgv", "ParamSetArgs"]
+        },
+        "xebra_attrs":
+        {
+            "mod":      "distance"
+        }
+    },
+
+    "comment|message":
+    {
+        "special_cb":
+        {
+            "textfield":    ["CommentTextArgc", "CommentTextArgv", "CommentTextArgs"]
+        },
+        "buddies":
+        {
+            "presentation_rect":    ["textfield"],
+            "patching_rect":        ["textfield"]
+        },
+        "xebra_attrs":
+        {
+            "text":         1
+        }
+    },
+
+    "message":
+    {
+        "special_cb":
+        {
+            "value":        ["ButtonGetArgc", "ButtonGetArgv", "ButtonSetArgs"],
+            "textfield":    ["CommentTextArgc", "CommentTextArgv", "CommentTextArgs"]
+        },
+        "xebra_attrs":
+        {
+            "mod":      "value"
+        }
+    },
+
+    "comment":
+    {
+        "buddies":
+        {
+            "bubble":              ["patching_rect", "presentation_rect"]
+        }
+    },
+
+    "jpatcher":
+    {
+        "special_cb":
+        {
+            "dspstate": ["DSPGetArgc", "DSPGetArgv", "DSPSetArgs"]
+        }
+    },
+
+    "mira.multitouch":
+    {
+        "special_cb":
+        {
+            "up_down_cancelled_touch":          ["NOOPGetArgc", "NOOPGetArgv", "MultiClientAttrSet"],
+            "moved_touch":                      ["NOOPGetArgc", "NOOPGetArgv", "MultiClientAttrSet"],
+            "region":                           ["NOOPGetArgc", "NOOPGetArgv", "MultiClientAttrSet"],
+            "tap":                              ["NOOPGetArgc", "NOOPGetArgv", "MultiClientAttrSet"],
+            "swipe":                            ["NOOPGetArgc", "NOOPGetArgv", "MultiClientAttrSet"],
+            "rotate":                           ["NOOPGetArgc", "NOOPGetArgv", "MultiClientAttrSet"],
+            "pinch":                            ["NOOPGetArgc", "NOOPGetArgv", "MultiClientAttrSet"]
+        },
+		"attr_flags":
+		{
+			"up_down_cancelled_touch": 7,
+			"moved_touch": 5,
+			"rotate": 5,
+			"pinch": 5,
+			"swipe": 5,
+			"tap": 5,
+			"region": 7
+		}
+    },
+
+    "!jpatcher|patcherview":
+    {
+        "special_cb":
+        {
+            "zorder":   ["ZorderGetArgc", "ZorderGetArgv", "NOOPSetArgs"],
+            "rawsend":  ["ParamGetArgc", "ParamGetArgv", "SendRawMessage"]
+        },
+        "buddies":
+        {
+            "presentation": ["presentation_rect"],
+            "fontsize":     ["patching_rect", "presentation_rect"],
+            "fontname":     ["patching_rect", "presentaiton_rect"]
+        }
+    },
+
+    "mira.motion":
+    {
+        "xebra_attrs":
+        {
+            "motion":       1
+        }
+    },
+
+    "mira.frame":
+    {
+        "special_cb":
+        {
+            "mira_focus":  ["WantsFocusGetArgc", "WantsFocusGetArgv", "NOOPSetArgs"]
+        }
+    }
+}
