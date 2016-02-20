@@ -114,7 +114,8 @@ var Color = net.brehaut.Color;
                     lingrad.addColorStop(0, blendColor.toString());
                     lingrad.addColorStop(1, baseColor.toString());
 
-                    ctx.fillStyle = lingrad.toString();
+                    // ctx.fillStyle = lingrad.toString();
+                    ctx.fillStyle = baseColor.toString();
                     ctx.fillRect(c, bounds.height - colHeight, 1, colHeight);
                 }
             }

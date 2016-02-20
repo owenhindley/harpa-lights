@@ -94,8 +94,14 @@ var fs = require("fs");
         var numBars = Math.floor(numBeats / 4);
 
         // Front
-        this.frontCtx.clearRect(0, 0, this.faces.front.width, this.faces.front.height);
-        this.sideCtx.clearRect(0, 0, this.faces.side.width, this.faces.side.height);
+        this.frontCtx.fillStyle = "black";
+        this.sideCtx.fillStyle = "black";
+        this.frontCtx.fillRect(0, 0, this.faces.front.width, this.faces.front.height);
+        this.sideCtx.fillRect(0, 0, this.faces.front.width, this.faces.front.height);
+        
+
+        //this.frontCtx.clearRect(0, 0, this.faces.front.width, this.faces.front.height);
+        //this.sideCtx.clearRect(0, 0, this.faces.side.width, this.faces.side.height);
 
         if (emojiLoaded && (!this.emoji || numBeats > this.numBeats)) {
           this.emoji = this.newEmoji({
