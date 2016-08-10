@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 514.0, 52.0, 964.0, 796.0 ],
+		"rect" : [ 476.0, 52.0, 964.0, 796.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -47403,25 +47403,25 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-24" : [ "live.text[2]", "live.text", 0 ],
-			"obj-14::obj-295" : [ "live.button[1]", "live.button", 0 ],
-			"obj-65" : [ "live.numbox", "live.numbox", 0 ],
-			"obj-16" : [ "live.text", "live.text", 0 ],
+			"obj-14::obj-68" : [ "live.toggle[4]", "live.toggle", 100 ],
 			"obj-14::obj-74" : [ "live.toggle[5]", "live.toggle", 100 ],
-			"obj-14::obj-76" : [ "Send_chord[1]", "Send_chord", 1 ],
-			"obj-64" : [ "live.text[4]", "live.text", 0 ],
-			"obj-14::obj-35" : [ "IP_D[1]", "IP_D", 104 ],
 			"obj-14::obj-26" : [ "IP_C[1]", "IP_C", 103 ],
-			"obj-14::obj-25" : [ "IP_B[1]", "IP_B", 102 ],
-			"obj-14::obj-24" : [ "IP_A[1]", "IP_A", 101 ],
-			"obj-8" : [ "live.text[1]", "live.text", 0 ],
+			"obj-14::obj-204" : [ "live.toggle[7]", "live.toggle", 100 ],
+			"obj-24" : [ "live.text[2]", "live.text", 0 ],
 			"obj-14::obj-10" : [ "Immediate[1]", "Immediate", 2 ],
 			"obj-14::obj-201" : [ "live.toggle[6]", "live.toggle", 100 ],
-			"obj-14::obj-204" : [ "live.toggle[7]", "live.toggle", 100 ],
+			"obj-65" : [ "live.numbox", "live.numbox", 0 ],
+			"obj-16" : [ "live.text", "live.text", 0 ],
+			"obj-14::obj-25" : [ "IP_B[1]", "IP_B", 102 ],
+			"obj-14::obj-24" : [ "IP_A[1]", "IP_A", 101 ],
+			"obj-14::obj-295" : [ "live.button[1]", "live.button", 0 ],
+			"obj-64" : [ "live.text[4]", "live.text", 0 ],
+			"obj-14::obj-38" : [ "UDP_Port[1]", "UDP_Port", 105 ],
 			"obj-7" : [ "live.text[3]", "live.text", 0 ],
-			"obj-14::obj-68" : [ "live.toggle[4]", "live.toggle", 100 ],
-			"obj-14::obj-33" : [ "Activator[1]", "Activator", 1 ],
-			"obj-14::obj-38" : [ "UDP_Port[1]", "UDP_Port", 105 ]
+			"obj-14::obj-76" : [ "Send_chord[1]", "Send_chord", 1 ],
+			"obj-8" : [ "live.text[1]", "live.text", 0 ],
+			"obj-14::obj-35" : [ "IP_D[1]", "IP_D", 104 ],
+			"obj-14::obj-33" : [ "Activator[1]", "Activator", 1 ]
 		}
 ,
 		"dependency_cache" : [ 			{
