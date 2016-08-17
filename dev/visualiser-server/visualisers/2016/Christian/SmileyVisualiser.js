@@ -51,8 +51,9 @@ var Image = require("canvas").Image;
         scaledHeight = Math.min(1, scaledHeight);
 
         
-        
-        this.frontCtx.clearRect(0,0,this.faces.front.width,this.faces.front.height);
+        // this.frontCtx.fillStyle = "rgba(0,0,0,0.2)";
+        // this.frontCtx.fillRect(0,0,this.faces.front.width,this.faces.front.height);
+        // this.frontCtx.clearRect(0,0,this.faces.front.width,this.faces.front.height);
        
         var dx = 0;
         var dy = 0;

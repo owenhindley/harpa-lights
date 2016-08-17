@@ -1,4 +1,4 @@
-var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
+var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
 //(function(global){
 
     var HarpaTestVisualiser = function() {};
@@ -13,6 +13,7 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
     var side = {};
     var particles = [];
     var velocity = 0.4;
+    var mode = 1;
 
     p.init = function(frontWidth, frontHeight, sideWidth, sideHeight) {
         s.init.call(this, frontWidth, frontHeight, sideWidth, sideHeight);
@@ -44,7 +45,7 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
             break;
             case "left":
                 this.x = face.width;
-                this.y = face.height-1;
+                this.y = r(0,face.height-1);
             break;
             case "right":
                 this.x = 0;
@@ -82,9 +83,28 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
         front.ctx.fillRect(0, 0, front.width, front.height);
         side.ctx.fillStyle = 'black';
         side.ctx.fillRect(0, 0, side.width, side.height);
-        if ((frame % 45) == 0) {
-            particles.push(new Particle(1,r(front.height,1),"right",front.face,velocity));
-            particles.push(new Particle(r(1,side.width),1,"up",side.face,velocity));
+
+        if ((frame % 240) == 0) {
+            mode = r(1,3);
+        }
+        
+        if (this.currentBeatValue == 1){
+            this.currentBeatValue = 0;
+        //if ((frame % 30) == 0) {
+            switch (mode){
+                case 1:
+                    particles.push(new Particle(1,r(front.height,1),"right",front.face,velocity));
+                    particles.push(new Particle(r(1,side.width),1,"up",side.face,velocity));
+                break;
+                case 2:
+                    particles.push(new Particle(r(front.width,1),1,"down",front.face,velocity));
+                    particles.push(new Particle(1,r(1,side.height),"left",side.face,velocity));
+                break;
+                case 3:
+                    particles.push(new Particle(r(1,front.width),1,"up",front.face,velocity));
+                    particles.push(new Particle(r(1,side.width),1,"down",side.face,velocity));
+                break;
+            }
         }
         for (i = 0; i < particles.length; i++) {
             particles[i].update();

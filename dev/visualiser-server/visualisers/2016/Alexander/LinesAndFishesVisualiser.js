@@ -32,7 +32,7 @@ var Color = net.brehaut.Color;
 
     var currDot = { side: 'front', x: 0, y: 0 };
 
-    console.log('barMs', barMs);
+    // console.log('barMs', barMs);
 
     /**
      * Returns a random number between min and max
@@ -184,20 +184,23 @@ var Color = net.brehaut.Color;
             for (var col in this.beat.matrix[row]) {
                 var opacity = Math.max(0, this.beat.matrix[row][col]);
                 var color = Color([255, 255, 255]).setAlpha(opacity);
+                
+                var rowNum = row * 1;
+                var colNum = col * 1;
 
-                this.frontCtx.fillStyle = color;
-                this.frontCtx.fillRect(col, row, 1, 1);
+                this.frontCtx.fillStyle = color.toString();
+                this.frontCtx.fillRect(colNum, rowNum, 1, 1);
 
-                this.sideCtx.fillStyle = color;
-                this.sideCtx.fillRect(this.faces.side.width - col, row, 1, 1);
+                this.sideCtx.fillStyle = color.toString();
+                this.sideCtx.fillRect(this.faces.side.width - colNum, rowNum, 1, 1);
 
                 // Counter-lines
                 if (numBars % 96 >= 64) {
                   var counterLineColor = color.setAlpha(Math.pow(opacity, 2));
-                  this.frontCtx.fillStyle = counterLineColor;
-                  this.sideCtx.fillStyle = counterLineColor;
-                  this.frontCtx.fillRect(this.faces.front.width - col, row, 1, 1);
-                  this.sideCtx.fillRect(col, row, 1, 1);
+                  this.frontCtx.fillStyle = counterLineColor.toString();
+                  this.sideCtx.fillStyle = counterLineColor.toString();
+                  this.frontCtx.fillRect(this.faces.front.width - colNum, rowNum, 1, 1);
+                  this.sideCtx.fillRect(colNum, rowNum, 1, 1);
                 }
 
                 // Vertical lines
@@ -208,23 +211,23 @@ var Color = net.brehaut.Color;
                   vertColor = vertColor.darkenByAmount(0.25 + 0.25 * Math.sin(numBars16 / 20));
 
                   if (col % 8 === numBars16 % 8) {
-                    this.frontCtx.fillStyle = vertColor;
-                    this.frontCtx.fillRect(0, col, this.faces.front.width, 1);
+                    this.frontCtx.fillStyle = vertColor.toString();
+                    this.frontCtx.fillRect(0, colNum, this.faces.front.width, 1);
                   }
                   else if (Math.abs(col % 8 - (numBars16 % 8)) === 4) {
-                    this.sideCtx.fillStyle = vertColor;
-                    this.sideCtx.fillRect(0, this.faces.side.height - col, this.faces.side.width, 1);
+                    this.sideCtx.fillStyle = vertColor.toString();
+                    this.sideCtx.fillRect(0, this.faces.side.height - colNum, this.faces.side.width, 1);
                   }
                 }
             }
         }
 
-        if (numBars16 % numBars === 0) {
+        /*if (numBars16 % numBars === 0) {
             this.frontCtx.fillStyle = "rgba(" + (numBars16 % 255) + ", " + (255 * Math.sin(0.01 * (numBars64 % 255))) + ", 0, 1)";
             this.frontCtx.fillRect(Math.round(this.faces.front.width / 2), Math.round(this.faces.front.height / 2), 1, 1);
-        }
+        }*/
 
-        // 16th dots
+        // // 16th dots
         if (numBars > 32 * 4) {
 
           // Move origin every beat
@@ -256,7 +259,7 @@ var Color = net.brehaut.Color;
             for (var f in this.fishes) {
                 var fish = this.fishes[f];
                 fish.pos.x += fish.velocity;
-                fish.pos.y = (this.faces.front.height * 0.5) + 0.5 * Math.sin(Math.cos(f + numBars16 / 40) * numBars64/20) * this.faces.front.height * Math.sin(numBars / 20);
+                fish.pos.y = (this.faces.front.height * 0.5) + 0.5 * Math.sin(Math.cos(f + numBars16 / 64) * numBars64/30) * this.faces.front.height * Math.sin(numBars / 30);
 
                 this.frontCtx.fillStyle = "rgba(0, 190, 255, 1)";
                 this.frontCtx.fillRect(fish.pos.x, fish.pos.y, 1, 1);
@@ -288,22 +291,25 @@ var Color = net.brehaut.Color;
             this.currentVolume = value;
             this.volumes.push(value);
             this.volume = this.volumes.slice(0, 100);
-            // console.log("volume = " + this.currentVolume);
+            //console.log(tempo);
         }
 
         // store beat values from channel 2
         if (channel == 2) {
             this.currentBeatValue = value;
 
-            var now = Date.now();
-            var diff = now - this.lastBeatTime;
-            barMs = diff * 4;
-            tempo = 60 / (barMs / 4000);
-            this.lastBeatTime = now;
-            // console.log("tempo = " + tempo);
-            // console.log("barMs = " + barMs);
-            // console.log("numBars = " + numBars);
+            if (this.currentBeatValue > 0.95){
+                var now = Date.now();
+                var diff = now - this.lastBeatTime;
+                barMs = diff;
+                tempo = 60 / (barMs / 4000);
+                this.lastBeatTime = now;
+                console.log('new tempo:', tempo, barMs);
+            }
+           
+
         }
     };
+
 
 module.exports = LinesAndFishesVisualiser;

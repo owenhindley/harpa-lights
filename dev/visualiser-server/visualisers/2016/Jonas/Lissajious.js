@@ -1,4 +1,4 @@
-var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
+var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
 //(function(global){
 
     var HarpaTestVisualiser = function() {};

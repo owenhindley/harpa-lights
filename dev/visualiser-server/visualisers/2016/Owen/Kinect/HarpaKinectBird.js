@@ -67,7 +67,7 @@ var fs = require("fs");
         for (var i=0; i< NUM_WALKERS; i++){ this.walkerBeats[i] = 0; }
  
 
-        this.playbackData = JSON.parse(fs.readFileSync(__dirname + "/kinectData/walk1.json"));
+        this.playbackData = JSON.parse(fs.readFileSync(__dirname + "/kinectData/bird1.json"));
         console.log(this.playbackData.length);
         this.playbackTime = 0;
 
@@ -145,7 +145,7 @@ var fs = require("fs");
         
 
         for (var i=0; i < NUM_WALKERS; i++){
-            this.walkerBeats[i] *= 0.95;
+            this.walkerBeats[i] *= 0.90;
         }
         
 
