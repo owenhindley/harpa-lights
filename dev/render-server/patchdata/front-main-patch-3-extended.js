@@ -50,3 +50,9 @@ module.exports = {
 
 	leftPercentage: leftFront[0].length/patch[0].length
 };
+
+// console.log(patch);
+console.log(patch[0].length == (leftFront[0].length+rightFront[0].length))
+
+console.log(leftFront[0][15]);
+console.log(rightFront[0][0]);

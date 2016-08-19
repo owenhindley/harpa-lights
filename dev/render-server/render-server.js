@@ -18,14 +18,14 @@ var front_patch = require('./patchdata/front-main-patch-3-extended.js');
 var side_patch = require('./patchdata/side-patch-1.js');
 
 
-// Universe 1 & 2
+
 var INTERFACE_1_IP = "2.0.0.5";
 
-// Side facade not used
+var INTERFACE_3_IP = "2.0.0.6";
+
+// Side facade 
 var INTERFACE_2_IP = "2.0.0.3";
 
-// Universe 3 & 4
-var INTERFACE_3_IP = "2.0.0.6";
 
 var SCREENSAVER_SERVER_IP = "tcp://127.0.0.1";
 
@@ -207,8 +207,14 @@ processing_from.on('message', function(msg){
 
 			// ** THIS NOW DOES FRONT FACADE SPLIT ON TWO BOXES; YES - HALLDÓR WAS HERE 17. AUGUST 2016 **
 
-			gameView.screensaverCtx.drawImage(processing_image, 0,0,processing_image.width*front_patch.leftPercentage, processing_image.height, 0, 0, front_patch.leftCols, front_patch.leftRows);
-			gameView2.screensaverCtx.drawImage(processing_image, processing_image.width*front_patch.leftPercentage,0, processing_image.width,processing_image.height, 0,0, front_patch.rightCols, front_patch.rightRows);
+			gameView2.screensaverCtx.drawImage(processing_image, 0,0,Math.ceil(processing_image.width*front_patch.leftPercentage), processing_image.height,
+				0,0, front_patch.leftCols, front_patch.leftRows);
+			gameView.screensaverCtx.drawImage(processing_image, Math.floor(processing_image.width*front_patch.leftPercentage), 0, processing_image.width, processing_image.height,
+				0,0, front_patch.rightCols, front_patch.rightRows);
+
+			scoreView.screensaverCtx.drawImage(processing_image, 0,0,harpaFaces.side[0], harpaFaces.side[1], 0,0,harpaFaces.side[0], harpaFaces.side[1]);
+			//gameView2.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
+			//gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
 
 			// draw front face
 			//gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
