@@ -14,45 +14,47 @@ var patch = [
 [ '1:118' , '1:79' , '1:40' , '1:1' , '2:433' , '2:391' , '2:352' , '2:313' , '2:274' , '2:235' , '2:196' , '2:157' , '2:118' , '2:79' , '2:40' , '2:1' , '3:427' , '3:388' , '3:349' , '3:310' , '3:271' , '3:232' , '3:193' , '3:154' , '3:115' , '3:76' , '3:37' , '3:510' , '4:510' , '4:510' , '4:510' , '4:510' , '4:510' , '4:510' , '4:510' , '4:510' , '4:510' , '4:510' ],
 ];
 
-var leftFront = [];
-var rightFront = [];
+module.exports = patch;
 
-// Where to split between universes
-var splitOn = 3;
+// var leftFront = [];
+// var rightFront = [];
 
-for(var row in patch) {
-	leftFront.push([]);
-	rightFront.push([]);
-	for(var col in patch[row]) {
-		var patchConnection = patch[row][col];
-		if (patchConnection[0] < splitOn) { // First letter in string is universe
-			leftFront[row].push(patchConnection);
-		} else {
-			rightFront[row].push(patchConnection);
-		}
-	}
-}
+// // Where to split between universes
+// var splitOn = 3;
 
-console.log("Patched " + leftFront[0].length + " in left and " + rightFront[0].length + " in right.");
+// for(var row in patch) {
+// 	leftFront.push([]);
+// 	rightFront.push([]);
+// 	for(var col in patch[row]) {
+// 		var patchConnection = patch[row][col];
+// 		if (patchConnection[0] < splitOn) { // First letter in string is universe
+// 			leftFront[row].push(patchConnection);
+// 		} else {
+// 			rightFront[row].push(patchConnection);
+// 		}
+// 	}
+// }
 
-module.exports = {
-	patch: patch,
-	leftFront: leftFront,
-	rightFront: rightFront,
+// console.log("Patched " + leftFront[0].length + " in left and " + rightFront[0].length + " in right.");
+
+// module.exports = {
+// 	patch: patch,
+// 	leftFront: leftFront,
+// 	rightFront: rightFront,
 	
-	leftCols: leftFront[0].length,
-	rightCols: rightFront[0].length,
-	leftRows: leftFront.length,
-	rightRows: rightFront.length,
+// 	leftCols: leftFront[0].length,
+// 	rightCols: rightFront[0].length,
+// 	leftRows: leftFront.length,
+// 	rightRows: rightFront.length,
 
-	patchCols: patch[0].length,
-	patchRows: patch.length,
+// 	patchCols: patch[0].length,
+// 	patchRows: patch.length,
 
-	leftPercentage: leftFront[0].length/patch[0].length
-};
+// 	leftPercentage: leftFront[0].length/patch[0].length
+// };
 
-// console.log(patch);
-console.log(patch[0].length == (leftFront[0].length+rightFront[0].length))
+// // console.log(patch);
+// console.log(patch[0].length == (leftFront[0].length+rightFront[0].length))
 
-console.log(leftFront[0][15]);
-console.log(rightFront[0][0]);
+// console.log(leftFront[0][15]);
+// console.log(rightFront[0][0]);
