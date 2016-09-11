@@ -1,3 +1,8 @@
+console.log("");
+console.log(" *** NOTE : MUST USE NODE 0.10 for some annoying reason *****");
+console.log("");
+console.log("");
+
 var AppConfig = require("../common/Config.js");
 var HarpaGameView = require('./views/HarpaGameViewPong.js');
 
@@ -19,13 +24,8 @@ var side_patch = require('./patchdata/side-patch-1.js');
 
 
 
-var INTERFACE_1_IP = "2.0.0.5";
-
-var INTERFACE_2_IP = "2.0.0.6";
-
-// Side facade  (HE: not being used)
-var INTERFACE_3_IP = "2.0.0.3";
-
+var INTERFACE_1_IP = "2.0.0.1";
+var INTERFACE_2_IP = "2.0.0.3";
 
 var SCREENSAVER_SERVER_IP = "tcp://127.0.0.1";
 
@@ -65,15 +65,9 @@ var harpaFaces = {
 };
 
 var gameView = new HarpaGameView();
-var gameView2 = new HarpaGameView();
-
-// gameView.init(INTERFACE_1_IP, front_patch.leftFront, front_patch.leftCols, front_patch.leftRows);
-
-// gameView2.init(INTERFACE_3_IP, front_patch.rightFront, front_patch.rightCols, front_patch.rightRows);
 
 gameView.init(INTERFACE_1_IP, front_patch, harpaFaces.front[0], harpaFaces.front[1]);
 
-gameView2.init(INTERFACE_3_IP, front_patch, harpaFaces.front[0], harpaFaces.front[1]);
 
 var scoreView = new HarpaScoreView();
 scoreView.init(INTERFACE_2_IP, side_patch, harpaFaces.side[0], harpaFaces.side[1]);
@@ -149,7 +143,6 @@ function render() {
 		} else if (scheduler.mode == Scheduler.MODE_SCREENSAVER || scheduler.mode == Scheduler.MODE_EXTERNAL) {
 			
 			gameView.render(game, "screensaver");
-			gameView2.render(game, "screensaver");
 
 			scoreView.render(game, "screensaver");
 
@@ -157,7 +150,6 @@ function render() {
 
 			var mode = (scheduler.mode == Scheduler.MODE_SHIMMER) ? "sleep" : "blackout";
 			gameView.render(game, mode);
-			gameView2.render(game, mode);
 			scoreView.render(game, mode);
 		}
 	}
@@ -208,27 +200,8 @@ processing_from.on('message', function(msg){
 		try {
 			// NOTE - *** JUST DOES FRONT FACADE ***
 			// ** FOR LIGHT ORGAN **
+			gameView.screensaverCtx.drawImage(processing_image, 0,0, processing_image.width, processing_image.height, 0,0, harpaFaces.front[0], harpaFaces.front[1]);
 
-			// ** THIS NOW DOES FRONT FACADE SPLIT ON TWO BOXES; YES - HALLDÓR WAS HERE 17. AUGUST 2016 **
-
-			// gameView2.screensaverCtx.drawImage(processing_image, 0,0,processing_image.width*front_patch.leftPercentage, processing_image.height,
-			// 	0,0, front_patch.leftCols, front_patch.leftRows);
-			// gameView.screensaverCtx.drawImage(processing_image, processing_image.width*front_patch.leftPercentage, 0, processing_image.width, processing_image.height,
-			// 	0,0, front_patch.rightCols, front_patch.rightRows);
-
-			gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
-
-			gameView2.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
-
-			//scoreView.screensaverCtx.drawImage(processing_image, 0,0,harpaFaces.side[0], harpaFaces.side[1], 0,0,harpaFaces.side[0], harpaFaces.side[1]);
-
-			//gameView2.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
-			//gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
-
-			// draw front face
-			//gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
-			// draw side face
-			//scoreView.screensaverCtx.drawImage(processing_image, 0,0,harpaFaces.side[0], harpaFaces.side[1], 0,0,harpaFaces.side[0], harpaFaces.side[1]);
 		} catch(e){
 			console.log(e);
 		}
@@ -278,18 +251,6 @@ var server = http.createServer(function(request, response){
 				responseText = gameView.canvas.toDataURL();
 			break;
 
-			case "getGameCanvasSourceBoth":
-				var obj = {
-					"one" : gameView.canvas.toDataURL(),
-					"two" : gameView2.canvas.toDataURL()
-				}
-				responseText = JSON.stringify(obj);
-			break;
-
-			case "getGameCanvasSource2":
-				responseText = gameView2.canvas.toDataURL();
-			break;
-
 			case "getScoreCanvasSource":
 				responseText = scoreView.canvas.toDataURL();
 			break;
@@ -304,7 +265,6 @@ var server = http.createServer(function(request, response){
 
 			case "blackout":
 				gameView.blackout();
-				gameView2.blackout();
 				scoreView.blackout();
 				active = false;
 			break;

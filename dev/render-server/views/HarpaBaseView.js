@@ -12,6 +12,9 @@ var tY = 0;
 var MAX_SCORE = 5;
 
 var tempCounter = 0;
+var rowCounter =0;
+var colCounter = 0;
+var tempColorMap = [];
 var randomColor = 255;
 
 var HarpaBaseView = function() {};
@@ -118,6 +121,10 @@ p.render = function(game, mode){
 
 		case "screensaver":
 
+
+			// 'correct' one
+			this.ctx.drawImage(this.screensaverCanvas,0,0);
+
 			// OHDEBUG
 			// tempCounter = !tempCounter;
 			// if (tempCounter){
@@ -126,13 +133,58 @@ p.render = function(game, mode){
 			// 	this.ctx.fillStyle = "black";
 			// 	this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 			// }
-			this.ctx.drawImage(this.screensaverCanvas,0,0);
+			// this.ctx.drawImage(this.screensaverCanvas,0,0);
+			
+			// function col() {
+			// 	return Math.floor(Math.random() * 255);
+			// }
+
+			// this.ctx.fillStyle = "black";
+			// this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+			// tempCounter++;
+
+			// this.ctx.fillStyle = "white";
+			// this.ctx.fillRect(colCounter, rowCounter, 1,1);
+			// if (tempCounter % 5 == 0) {
+
+				
+			// 	colCounter++;
+			// 	if (colCounter > this.canvas.width){
+			// 		colCounter = 0;
+			// 		rowCounter++;
+			// 		if (rowCounter > this.canvas.height){
+			// 			rowCounter = 0;
+			// 			colCounter = 0;
+			// 		}
+			// 	}
+			// }
 			
 
-//			 for (var i=0; i < this.canvas.width; i++){
-//			 	this.ctx.fillStyle= "rgb(0," + Math.floor((i/this.canvas.width) * 255) + ",255)";
-//			 	this.ctx.fillRect(i,0,1, this.canvas.height);	
-//			 }
+			// RANDOM RAINBOWS static
+
+			// for (var i=0; i < this.canvas.width; i++){
+			// 	// if (tempCounter == 0){
+			// 		var r = col();
+			// 		var g = col();
+			// 		var b = col();
+			// 		tempColorMap[i] = [r, g, b];
+					
+			// 		// console.log(tempColorMap);
+			// 	// }		
+			// 	try {
+			// 		this.ctx.fillStyle= "rgb(" + tempColorMap[i][0] + "," + tempColorMap[i][1] + ","+ tempColorMap[i][2] +")";
+			// 		this.ctx.fillRect(i,0,1, this.canvas.height);	
+
+			// 	} catch(e){
+
+			// 		// don't care
+			// 	}
+				
+			// }	
+			// tempCounter++;
+			
+			 
 
 			// tempCounter += 0.05;
 
