@@ -139,7 +139,7 @@ p.render = function(game, mode){
 			// 	return Math.floor(Math.random() * 255);
 			// }
 
-			// this.ctx.fillStyle = "black";
+			// this.ctx.fillStyle = "white";
 			// this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 			// tempCounter++;

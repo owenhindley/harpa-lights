@@ -24,8 +24,8 @@ var side_patch = require('./patchdata/side-patch-1.js');
 
 
 
-var INTERFACE_1_IP = "2.0.0.1";
-var INTERFACE_2_IP = "2.0.0.3";
+var INTERFACE_1_IP = "2.0.0.3";
+var INTERFACE_2_IP = "2.0.0.1";
 
 var SCREENSAVER_SERVER_IP = "tcp://127.0.0.1";
 
