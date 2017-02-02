@@ -33,7 +33,7 @@ Getting up & running with the repo depends on what you want to do. See below:
 ### Creating a music-reactive visualiser
 * *Either* download the standalone visualiser [here](https://www.dropbox.com/s/uawi8e6ew071p6d/sonar-visualiser-creator.zip?dl=0) *or* this repository and open up `/dev/visualiser-creator`
 
-
+* Make sure you're running node 0.12.8. A handy tool for maintaining / obtaining different versions of node in parallel is [nvm](https://github.com/creationix/nvm)
 * Run `npm install`
 * To run the visualiser tester ( you could even call it a visualiser *visualiser* ) do the following :
 	* If you have Grunt installed, use the included `Gruntfile.js` which will run an http-server on `127.0.0.1:8080`. Instructions for installing grunt [here](http://gruntjs.com/using-the-cli)
