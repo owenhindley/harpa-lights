@@ -11,8 +11,6 @@ var AudioDataInterface = require("./js/AudioDataInterface.js");
 
 var RENDER_SERVER_IP = "tcp://127.0.0.1";
 
-
-
 console.log("**************************************************");
 console.log("*                                                *");
 console.log("*                  HARPA PONG!                   *");
@@ -53,9 +51,15 @@ function nextVisualiser() {
 
 	console.log(" *&*&*& cycling to next visualiser *&*&*& ");
 
-	manager.selectVisualiser(currentVisualiserIndex);
+	var processdata = manager.selectVisualiser(currentVisualiserIndex);
 
-	cycleVisualiserTimeout = setTimeout(nextVisualiser, 10 * 1000);
+
+	var timeout = 18 * 1000;
+	if (processdata && processdata.timeout){
+		timeout = processdata.timeout;
+	}
+
+	cycleVisualiserTimeout = setTimeout(nextVisualiser, timeout);
 	
 	currentVisualiserIndex++;
 	if (currentVisualiserIndex > vis.length) currentVisualiserIndex = 0;

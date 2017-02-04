@@ -11,6 +11,12 @@ HarpaImageSender sender;
 void settings() {
   size(harpaWidth, harpaHeight, P3D);
   PJOGL.profile = 1;
+  
+  // ** PORT NUMBERS **
+  
+  // For Arena/Resolume -> Visualiser server, set to port 3100
+  // For Syphon (e.g. Max for Light Organ) -> Render server, set to port 3101
+  
   sender = new HarpaImageSender(3101, harpaWidth, harpaHeight);
   //byteBuffer = ByteBuffer.allocate(harpaWidth*harpaHeight * 4);
   //imgData = new int[harpaWidth * harpaHeight]; 
@@ -26,6 +32,9 @@ int movementIndex =0;
 void draw() {
   
    background(0);
+   fill(255);
+   //rect(0,0,10,10);
+   
   
    if (client.newFrame()) {
     img = client.getImage(img); // load the pixels array with the updated image info (slow)    

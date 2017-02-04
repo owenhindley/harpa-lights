@@ -1,5 +1,6 @@
 var AppConfig = require("../common/Config.js");
 var HarpaGameView = require('./views/HarpaGameViewPong.js');
+
 var HarpaScoreView = require('./views/HarpaScoreViewPong.js');
 var winston = require('winston');
 var io = require('socket.io-client');
@@ -13,12 +14,18 @@ var zmq = require("zmq");
 var Canvas = require("canvas");
 var Image = Canvas.Image;
 
-
 var front_patch = require('./patchdata/front-main-patch-3-extended.js');
 var side_patch = require('./patchdata/side-patch-1.js');
 
-var INTERFACE_1_IP = "2.224.168.149";
-var INTERFACE_2_IP = "2.145.222.186";
+
+
+var INTERFACE_1_IP = "2.0.0.5";
+
+var INTERFACE_3_IP = "2.0.0.6";
+
+// Side facade 
+var INTERFACE_2_IP = "2.0.0.3";
+
 
 var SCREENSAVER_SERVER_IP = "tcp://127.0.0.1";
 
@@ -58,7 +65,11 @@ var harpaFaces = {
 };
 
 var gameView = new HarpaGameView();
-gameView.init(INTERFACE_1_IP, front_patch, harpaFaces.front[0], harpaFaces.front[1]);
+gameView.init(INTERFACE_1_IP, front_patch.leftFront, front_patch.leftCols, front_patch.leftRows);
+
+var gameView2 = new HarpaGameView();
+gameView2.init(INTERFACE_3_IP, front_patch.rightFront, front_patch.rightCols, front_patch.rightRows);
+
 var scoreView = new HarpaScoreView();
 scoreView.init(INTERFACE_2_IP, side_patch, harpaFaces.side[0], harpaFaces.side[1]);
 
@@ -133,18 +144,18 @@ function render() {
 		} else if (scheduler.mode == Scheduler.MODE_SCREENSAVER || scheduler.mode == Scheduler.MODE_EXTERNAL) {
 			
 			gameView.render(game, "screensaver");
+			gameView2.render(game, "screensaver");
+
 			scoreView.render(game, "screensaver");
 
 		} else {
 
 			var mode = (scheduler.mode == Scheduler.MODE_SHIMMER) ? "sleep" : "blackout";
 			gameView.render(game, mode);
+			gameView2.render(game, mode);
 			scoreView.render(game, mode);
 		}
-
-
 	}
-
 };
 
 /*
@@ -155,11 +166,8 @@ var saverSock_from = zmq.socket("pull");
 var saverSock_to = zmq.socket("push");
 var screensaver_image = new Image;
 
-
 saverSock_from.connect(SCREENSAVER_SERVER_IP + ":" + AppConfig.PORT_SCREENSAVER_IMG_SEND);
 saverSock_to.bindSync(SCREENSAVER_SERVER_IP + ":" + AppConfig.PORT_SCREENSAVER_CMD);
-
-
 
 saverSock_from.on('message', function(msg){
 	
@@ -185,17 +193,34 @@ saverSock_from.on('message', function(msg){
 var processing_from = zmq.socket("pull");
 var processing_image = new Image;
 
+
+
 processing_from.connect(SCREENSAVER_SERVER_IP + ":" + AppConfig.PORT_EXTERNAL_IMG_SEND);
 processing_from.on('message', function(msg){
 
 	if (msg.length && scheduler.mode == Scheduler.MODE_EXTERNAL){
 		processing_image.src = msg;
 		try {
-			// draw front face
-			gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
-			// draw side face
-			scoreView.screensaverCtx.drawImage(processing_image, 0,0,harpaFaces.side[0], harpaFaces.side[1], 0,0,harpaFaces.side[0], harpaFaces.side[1]);
 
+			// NOTE - *** JUST DOES FRONT FACADE ***
+			// ** FOR LIGHT ORGAN **
+
+			// ** THIS NOW DOES FRONT FACADE SPLIT ON TWO BOXES; YES - HALLDÓR WAS HERE 17. AUGUST 2016 **
+
+			gameView2.screensaverCtx.drawImage(processing_image, 0,0,Math.ceil(processing_image.width*front_patch.leftPercentage), processing_image.height,
+				0,0, front_patch.leftCols, front_patch.leftRows);
+			gameView.screensaverCtx.drawImage(processing_image, Math.floor(processing_image.width*front_patch.leftPercentage), 0, processing_image.width, processing_image.height,
+				0,0, front_patch.rightCols, front_patch.rightRows);
+
+			scoreView.screensaverCtx.drawImage(processing_image, 0,0,harpaFaces.side[0], harpaFaces.side[1], 0,0,harpaFaces.side[0], harpaFaces.side[1]);
+			//gameView2.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
+			//gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
+
+			// draw front face
+			//gameView.screensaverCtx.drawImage(processing_image, harpaFaces.side[0]+1,0, harpaFaces.front[0], harpaFaces.front[1], 0,0, harpaFaces.front[0], harpaFaces.front[1]);
+			// draw side face
+			//scoreView.screensaverCtx.drawImage(processing_image, 0,0,harpaFaces.side[0], harpaFaces.side[1], 0,0,harpaFaces.side[0], harpaFaces.side[1]);
+			
 		} catch(e){
 			console.log(e);
 		}
@@ -242,7 +267,7 @@ var server = http.createServer(function(request, response){
 			break;
 
 			case "getGameCanvasSource":
-				responseText = gameView.canvas.toDataURL();
+				responseText = gameView2.canvas.toDataURL();
 			break;
 
 			case "getScoreCanvasSource":
@@ -259,6 +284,7 @@ var server = http.createServer(function(request, response){
 
 			case "blackout":
 				gameView.blackout();
+				gameView2.blackout();
 				scoreView.blackout();
 				active = false;
 			break;

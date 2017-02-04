@@ -11,11 +11,16 @@ var tY = 0;
 
 var MAX_SCORE = 5;
 
+var tempCounter = 0;
+var randomColor = 255;
+
 var HarpaBaseView = function() {};
 
 var p = HarpaBaseView.prototype;
 
 p.init = function(ip, patchdata, width, height){
+
+	randomColor = Math.floor(Math.random() * 255);
 
 	this.width = width;
 	this.height = height;
@@ -113,7 +118,25 @@ p.render = function(game, mode){
 
 		case "screensaver":
 
-			this.ctx.drawImage(this.screensaverCanvas,0,0);
+			// OHDEBUG
+//			this.ctx.drawImage(this.screensaverCanvas,0,0);
+
+//			 for (var i=0; i < this.canvas.width; i++){
+//			 	this.ctx.fillStyle= "rgb(0," + Math.floor((i/this.canvas.width) * 255) + ",255)";
+//			 	this.ctx.fillRect(i,0,1, this.canvas.height);	
+//			 }
+
+			 //tempCounter += 0.05;
+			 //if (tempCounter > this.canvas.width) tempCounter = 0;
+
+			this.ctx.fillStyle = "white";
+			// this.ctx.fillRect(Math.floor(tempCounter),0,1,this.canvas.height);
+			for(var i = 0; i < this.canvas.width; i++) {
+				this.ctx.fillRect(i, i%this.canvas.height, 1, 1);
+			}
+
+			// this.ctx.fillStyle = "white";
+			// this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 		break;
 
