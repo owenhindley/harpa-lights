@@ -5,6 +5,8 @@ var ChildProcess = require('child_process');
 var zmq = require("zmq");
 var CanvasManager = require("./CanvasManager.js");
 
+var TransitionAnimation = require("./TransitionAnimation.js");
+
 var LOCAL_SOCKET_ADDRESS = "tcp://127.0.0.1:6000";
 
 var VisualiserManager = function() {
@@ -17,6 +19,10 @@ var VisualiserManager = function() {
 
 	this.canvas = new Canvas(1,1);
 	this.ctx = this.canvas.getContext("2d");
+
+	this.transitionAnimation = null;
+	this.transitionEnvelope = 0;
+	this.transitionTarget = 0;
 
 	this.offsets = [0];
 
@@ -35,7 +41,15 @@ p.addFace = function(width, height) {
 	this.faces.push([width, height]);
 	this.canvas.width += width;
 	this.canvas.height = Math.max(this.canvas.height, height);
-}
+
+};
+
+p.createTransition = function() {
+
+	this.transitionAnimation = new TransitionAnimation();
+	this.transitionAnimation.init(this.canvas.width, this.canvas.height);
+
+};
 
 p.addVisualiser = function(aData) {
 
@@ -156,7 +170,19 @@ p.render = function() {
 		// error calling render
 	}
 	
-
+	try {
+		if (this.transitionEnvelope > 0){
+			this.transitionAnimation.render();
+		}
+		this.transitionEnvelope += (this.transitionTarget - this.transitionEnvelope) * 0.1;
+		if (this.transitionEnvelope > 0.95) {
+			this.transitionEnvelope = 1.0;
+		} else if (this.transitionEnvelope > 0.05){
+			this.transitionEnvelope = 0.0;
+		}
+	} catch(e){
+		// error showing transition
+	}
 };
 
 

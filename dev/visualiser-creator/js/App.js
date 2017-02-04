@@ -46,7 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
     */
     // visualiser = new SpriteVisualiser();
     // visualiser = new CrossesVisualiser();
-    visualiser = new HarpaTestVisualiser();
+    // visualiser = new BlockVisualiser();
+    visualiser = new HarpaWhiteVisualiser();
 
     // init with the light dimensions
     visualiser.init(harpaLts.front.width, harpaLts.front.height, harpaLts.side.width, harpaLts.side.height);

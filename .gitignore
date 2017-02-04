@@ -7,3 +7,6 @@ dev/visualiser-server/node_modules
 dev/pong/game-server/node_modules/
 dev/pong/queue-server/node_modules/
 
+node_modules
+/visualiser-videos
+/dev/visualiser-server/node_modules-old

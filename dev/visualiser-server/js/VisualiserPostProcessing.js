@@ -48,7 +48,6 @@ p.init = function(frontWidth, frontHeight, sideWidth, sideHeight, aOptions) {
 	this.tempImageData = null;
 
 	// this canvas gets used to export out the image buffer data
-
 	this.exportCanvas = new Canvas(sideCanvas.width + frontCanvas.width, Math.max(sideCanvas.height, frontCanvas.height));
 	this.exportCtx = this.exportCanvas.getContext('2d');
 	this.exportCtx.fillStyle = "black";

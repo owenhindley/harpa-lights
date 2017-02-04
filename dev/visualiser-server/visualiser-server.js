@@ -37,7 +37,7 @@ console.log('Starting...');
 
 
 var manager = new VisualiserManager();
-manager.addFace(38,13) 	// front face
+manager.addFace(38,13);	// front face
 manager.addFace(39, 9);	// side face
 
 // all the visualisers we want to include
@@ -55,7 +55,7 @@ function nextVisualiser() {
 
 	manager.selectVisualiser(currentVisualiserIndex);
 
-	cycleVisualiserTimeout = setTimeout(nextVisualiser, 30 * 1000);
+	cycleVisualiserTimeout = setTimeout(nextVisualiser, 10 * 1000);
 	
 	currentVisualiserIndex++;
 	if (currentVisualiserIndex > vis.length) currentVisualiserIndex = 0;
