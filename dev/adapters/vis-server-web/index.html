@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Harpa/Sónar Visualiser Dev Environment</title>
+        <meta charset="utf-8"></meta>
+
+        <link rel="stylesheet" href="css/styles.css"/>
+        <script src="//localhost:35729/livereload.js"></script>
+
+        <script src="js/require.js"></script>
+
+        <script src="js/HarpaVisualiserBase.js"></script>
+        <script src="js/MP3AudioSource.js"></script>
+        <script src="js/TempoSource.js"></script>
+
+        <script src="js/HarpaSVGFixtureView.js"></script>
+        <script src="js/HarpaCanvasFixtureView.js"></script>
+
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- Custom Visualisers -->
+        <!-- -->
+        <!-- Add the path to your custom visualiser JS class here -->
+        <!-- -->
+        <script src="js/visualisers/libs/dat.gui.js"></script>
+        <!-- <script src="http://127.0.0.1:8082/socket.io/socket.io.js"></script> -->
+        
+        <script src="js/visualisers/libs/Tween.js"></script>
+        <script src="js/visualisers/libs/tinycolor-min.js"></script>
+        <!-- <script src="js/visualisers/SpriteLibrary.js"></script> -->
+        <!-- <script src="js/visualisers/CrossesVisualiser.js"></script> -->
+        <!-- <script src="js/visualisers/HarpaKinectWalker.js"></script> -->
+        <!-- <script src="js/visualisers/NoteVisualiser.js"></script> -->
+        <!-- <script src="js/visualisers/SmileyVisualiser.js"></script> -->
+        <script src="js/visualisers/BlockVisualiser.js"></script>
+        <!-- <script src="js/visualisers/WhiteVisualiser.js"></script> -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+        <!-- * * * * *  -->
+
+        <script src="js/App.js"></script>
+
+    </head>
+
+    <body>
+        <div id="container">
+            <h3>Harpa Sónar 2017 Visualisers</h3>
+            <p>Press 'd' to toggle between debug &amp; live</p>
+            <div id="canvasContainer">
+                    <div class="visualiserContainer" id="sideContainer">
+                        <h3>Side Facade</h3>
+                    </div>
+                    <div class="visualiserContainer" id="frontContainer">
+                        <h3>Front Facade</h3>
+                    </div>
+            </div>
+            <h3>Textures</h3>
+            <div id="textureContainer">
+                <div id="sideTextureContainer">
+
+                </div>
+                <div id="frontTextureContainer">
+
+                </div>
+            </div>
+            <div id="audioInput">
+                <h6>Test channel sources:</h6>
+                <p><strong>Channel 1 / Volume signal</strong></p>
+                <input type="range" id="rms" min="0" max="1" step="0.001"/>
+                <br/>
+                <p><strong>Channel 2 / Tempo pulse</strong></p>
+                <input type="radio" id="bpm" checked/>
+                <button id="tapTempo">tap</button>
+            </div>
+            <div id="feedback">
+                <p id="debugOutput"></p>
+            </div>
+        </div>
+
+        <canvas id="export"></canvas>
+    </body>
+
+</html>
