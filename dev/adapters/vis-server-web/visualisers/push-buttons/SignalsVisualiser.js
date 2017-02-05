@@ -1,14 +1,14 @@
-var HarpaVisualiserBase = require("../../../common/HarpaVisualiserBase.js");
-var TWEEN = require("./Tween.js");
-var tinycolor = require("./tinycolor.js");
+(function(global){
+
+// var HarpaVisualiserBase = require("../../../common/HarpaVisualiserBase.js");
+// var TWEEN = require("./Tween.js");
+// var tinycolor = require("./tinycolor.js");
 
     var LINE_HEIGHT = 1;
     var LINE_SPACING = 1;
 
     var SAT = 100;
     var BASE_HUE = 170;
-
-    var LINE_SPEED = 1000;
 
     var SignalsVisualiser = function() {
 
@@ -20,6 +20,8 @@ var tinycolor = require("./tinycolor.js");
 
         this.lines = [];
         this.lineIndex = 0;
+        this.lastLineTime = Date.now();
+        this.LINE_TIME = 1000;
 
     };
 
@@ -47,11 +49,12 @@ var tinycolor = require("./tinycolor.js");
 
     p.render = function() {
 
-        TWEEN.update();
+        // TWEEN.update();
 
         this.frontCtx.clearRect(0,0,this.faces.front.width,this.faces.front.height);
         this.sideCtx.clearRect(0,0,this.faces.side.width,this.faces.side.height);
-        this.combCtx.clearRect(0,0,this.totalWidth, this.totalHeight);
+        this.combCtx.fillStyle = "black";
+        this.combCtx.fillRect(0,0,this.totalWidth, this.totalHeight);
 
         for (var i=0; i < this.lines.length; i++){
 
@@ -86,12 +89,12 @@ var tinycolor = require("./tinycolor.js");
         line.direction = direction;
         line.value = 0.0;
         
-        var tween = new TWEEN.Tween(line).to({ value : 1.0 }, LINE_SPEED).onComplete(function() {
+        var tween = new TWEEN.Tween(line).to({ value : 1.0 }, this.LINE_TIME).onComplete(function() {
             // line.moving = false;
 
         }).start();
         line.fade = 1.0;
-        var fadeTween = new TWEEN.Tween(line).to({ fade : 0.0 }, LINE_SPEED/2).delay(LINE_SPEED).onComplete(function() {
+        var fadeTween = new TWEEN.Tween(line).to({ fade : 0.0 }, this.LINE_TIME/2).delay(this.LINE_TIME).onComplete(function() {
             line.moving = false;
         }).start();
     };
@@ -99,12 +102,12 @@ var tinycolor = require("./tinycolor.js");
     p.signal = function(channel, value) {
 
         // store volume values from channel 1
-        if (channel == 1){
+        if (channel == 2){
             this.currentVolume = value;
         }
 
         // store beat values from channel 2
-        if (channel == 2){
+        if (channel == 1){
             this.currentBeatValue = value;
 
             if (value > 0.5){
@@ -117,6 +120,9 @@ var tinycolor = require("./tinycolor.js");
                     // this.lineIndex = this.lineIndex % this.lines.length;
 
                     if (this.lines[index] && !this.lines[index].moving){
+                        this.LINE_TIME = Date.now() - this.lastLineTime;
+                        this.LINE_TIME = Math.min(1000, this.LINE_TIME);
+                        this.lastLineTime = Date.now();
                         this.fireSignal(index, Math.random() > 0.5);
                         // this.fireSignal(index, false);
                         found = true;
@@ -135,4 +141,6 @@ var tinycolor = require("./tinycolor.js");
         return color.toHexString();
     };
 
-module.exports = SignalsVisualiser;
+ global.SignalsVisualiser = (global.module || {}).exports = SignalsVisualiser;
+
+})(this);

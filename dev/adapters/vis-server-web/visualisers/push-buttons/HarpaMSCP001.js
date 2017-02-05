@@ -1,4 +1,4 @@
-var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
+(function(global){
 	/*
 
 	   Christian's Visualiser 001
@@ -246,7 +246,7 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
 
 		}
 		// this console log is here to ensure things work. fuck knows why.
-		console.log(volVal);
+		// console.log(volVal);
 
 
 		// for (var i=0;i<this._middleSquares.length;i++){
@@ -291,4 +291,8 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
 	};
 
 
-module.exports = HarpaMSCP001;
+
+
+    global.HarpaMSCP001 = (global.module || {}).exports = HarpaMSCP001;
+
+})(this);

@@ -1,5 +1,6 @@
-var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
-var Image = require("canvas").Image;
+(function(global){
+// var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
+// var Image = require("canvas").Image;
 
     var HarpaRainVisualiser = function() {
 
@@ -85,7 +86,7 @@ var Image = require("canvas").Image;
 
       for(var i = 0; i < this.total; ++i){
        var currentY = this.dots[i] - 1;
-       this.dots[i] += this.dotsVel[i] += (this.currentVolume / 1000)*this.currentBeatValue/2 / this.h;
+       this.dots[i] += this.dotsVel[i] += (this.currentVolume)*this.currentBeatValue/2 / this.h;
 
       //  console.log(this.dotsVel[i]);
       //  console.log(this.currentBeatValue * 1000);
@@ -114,4 +115,6 @@ var Image = require("canvas").Image;
         }
     };
 
-module.exports = HarpaRainVisualiser;
+global.HarpaRainVisualiser = (global.module || {}).exports = HarpaRainVisualiser;
+
+})(this);

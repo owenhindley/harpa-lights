@@ -1,0 +1,16 @@
+{
+  "name": "vis-server-osc",
+  "version": "1.0.0",
+  "description": "OSC relay system for Harpa Lights visualiser server",
+  "main": "vis-osc-relay.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Owen Hindley",
+  "license": "ISC",
+  "dependencies": {
+    "dgram": "1.0.1",
+    "osc-min": "1.1.1",
+    "socket.io": "1.7.2"
+  }
+}

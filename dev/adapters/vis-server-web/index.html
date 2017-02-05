@@ -6,9 +6,8 @@
         <meta charset="utf-8"></meta>
 
         <link rel="stylesheet" href="css/styles.css"/>
+        <script src="//localhost:88/socket.io/socket.io.js"></script>
         <script src="//localhost:35729/livereload.js"></script>
-
-        <script src="js/require.js"></script>
 
         <script src="js/HarpaVisualiserBase.js"></script>
         <script src="js/MP3AudioSource.js"></script>
@@ -25,18 +24,24 @@
         <!-- -->
         <!-- Add the path to your custom visualiser JS class here -->
         <!-- -->
-        <script src="js/visualisers/libs/dat.gui.js"></script>
+        <!-- <script src="js/visualisers/libs/dat.gui.js"></script> -->
         <!-- <script src="http://127.0.0.1:8082/socket.io/socket.io.js"></script> -->
         
-        <script src="js/visualisers/libs/Tween.js"></script>
-        <script src="js/visualisers/libs/tinycolor-min.js"></script>
-        <!-- <script src="js/visualisers/SpriteLibrary.js"></script> -->
-        <!-- <script src="js/visualisers/CrossesVisualiser.js"></script> -->
-        <!-- <script src="js/visualisers/HarpaKinectWalker.js"></script> -->
-        <!-- <script src="js/visualisers/NoteVisualiser.js"></script> -->
-        <!-- <script src="js/visualisers/SmileyVisualiser.js"></script> -->
-        <script src="js/visualisers/BlockVisualiser.js"></script>
-        <!-- <script src="js/visualisers/WhiteVisualiser.js"></script> -->
+        <script src="visualisers/libs/Tween.js"></script>
+        <script src="visualisers/libs/tinycolor-min.js"></script>
+        <script src="visualisers/libs/perlin-noise-simplex.js"></script>
+        <script src="visualisers/libs/color.js"></script>
+       
+        <script src="visualisers/push-buttons/HarpaMSCP001.js"></script>
+        <script src="visualisers/push-buttons/HarpaMSCP004.js"></script>
+        <script src="visualisers/push-buttons/HarpaRainVisualiser.js"></script>
+        <script src="visualisers/push-buttons/Jonas_Connect.js"></script>
+        <script src="visualisers/push-buttons/Lines.js"></script>
+        <script src="visualisers/push-buttons/SignalsVisualiser.js"></script>
+        <script src="visualisers/push-buttons/Stars.js"></script>
+        <script src="visualisers/push-buttons/Conway.js"></script>
+        <script src="visualisers/push-buttons/BeatLineVisualiser.js"></script>
+
         <!-- * * * * *  -->
         <!-- * * * * *  -->
         <!-- * * * * *  -->
@@ -75,6 +80,7 @@
                 <p><strong>Channel 2 / Tempo pulse</strong></p>
                 <input type="radio" id="bpm" checked/>
                 <button id="tapTempo">tap</button>
+                <p> tap 'b' for beat test </p>
             </div>
             <div id="feedback">
                 <p id="debugOutput"></p>

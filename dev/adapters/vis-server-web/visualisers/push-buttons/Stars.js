@@ -1,9 +1,8 @@
-var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
-//(function(global){
+(function(global){
 
-    var HarpaTestVisualiser = function() {};
+    var JonasStarsVisualiser = function() {};
 
-    var p = HarpaTestVisualiser.prototype = new HarpaVisualiserBase();
+    var p = JonasStarsVisualiser.prototype = new HarpaVisualiserBase();
     var s = HarpaVisualiserBase.prototype;
 
     var frame = 0;
@@ -34,7 +33,7 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
         }
     }
 
-    Particle = function(width,height,direction,face,velocity){
+    var Particle = function(width,height,direction,face,velocity){
         this.width = width;
         this.height = height;
         this.direction = direction;
@@ -108,7 +107,7 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
     }
 
 
-    global.HarpaTestVisualiser = (global.module || {}).exports = HarpaTestVisualiser;
+    global.JonasStarsVisualiser = (global.module || {}).exports = JonasStarsVisualiser;
 
     /* helpers */
 
@@ -116,5 +115,4 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-//})(this);
-module.exports = HarpaTestVisualiser
+})(this);

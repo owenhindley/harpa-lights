@@ -10,9 +10,35 @@ var DEBUG_MODE = false;
 
 var exportCanvas, exportCtx;
 
+var tempCanvasSide, tempSideCtx;
+var tempCanvasFront, tempFrontCtx;
+
 var updateIntervalId = -1;
 
+var visualiserLib = [
+    new BeatLineVisualiser(),
+    new HarpaMSCP004(),
+    new HarpaRainVisualiser(),
+    new JonasConnectVisualiser(),
+    new JonasLinesVisualiser(),
+    new SignalsVisualiser(),
+    new JonasStarsVisualiser()
+];
+
+var visualiser = visualiserLib[0];
+var nextVisualiser = visualiserLib[1];
+var visualiserIndex = 0;
+var crossfade = 0;
+var isCrossfading = false;
+var relaySocket;
+
 document.addEventListener("DOMContentLoaded", function() {
+
+
+    tempCanvasSide = document.createElement("canvas");
+    tempSideCtx = tempCanvasSide.getContext("2d");
+    tempCanvasFront = document.createElement("canvas");
+    tempFrontCtx = tempCanvasFront.getContext("2d");
 
     debugElement = document.getElementById("debugOutput");
     volumeSlider = document.getElementById("rms");
@@ -47,18 +73,31 @@ document.addEventListener("DOMContentLoaded", function() {
     */
     // visualiser = new SpriteVisualiser();
     // visualiser = new CrossesVisualiser();
-    visualiser = new BlockVisualiser();
+    // visualiser = new BlockVisualiser();
     // visualiser = new HarpaWhiteVisualiser();
 
-    // init with the light dimensions
-    visualiser.init(harpaLts.front.width, harpaLts.front.height, harpaLts.side.width, harpaLts.side.height);
-    //
-    document.getElementById("sideTextureContainer").appendChild(visualiser.faces.side);
-    document.getElementById("frontTextureContainer").appendChild(visualiser.faces.front);
+    for (var i=0; i < visualiserLib.length; i++){
+        visualiserLib[i].init(harpaLts.front.width, harpaLts.front.height, harpaLts.side.width, harpaLts.side.height);
+    }
 
+
+
+    // init with the light dimensions
+    
+    //
+    
     // setup export canvas
     exportCanvas.width = visualiser.faces.front.width + visualiser.faces.side.width;
     exportCanvas.height = Math.max(visualiser.faces.front.height, visualiser.faces.side.height);
+
+    tempCanvasSide.width = visualiser.faces.side.width;
+    tempCanvasSide.height = visualiser.faces.side.height;
+    tempCanvasFront.width = visualiser.faces.front.width;
+    tempCanvasFront.height = visualiser.faces.front.height;
+
+    document.getElementById("sideTextureContainer").appendChild(tempCanvasSide);
+    document.getElementById("frontTextureContainer").appendChild(tempCanvasFront);
+
 
     fixturesFront = new HarpaCanvasFixtureView();
     fixturesFront.init(harpaLts.front.width, harpaLts.front.height);
@@ -81,11 +120,60 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
 
-    document.body.addEventListener("keyup", function(e){
-        // press 'd' to toggle between debug & not
-        if (e.which == 68){
-           toggleDebugMode();
+    // control
+
+    relaySocket = io.connect("http://localhost:88");
+    relaySocket.on('connection', function(){
+        console.log("socket connected");
+    });
+    relaySocket.on("/tempo-bang", function(data){
+        if (visualiser){ visualiser.signal(1,1); }
+        if (nextVisualiser){ nextVisualiser.signal(1,1); }
+
+        try{
+            beatIndicator.checked = !beatIndicator.checked;
+        } catch(e){
+
         }
+    });
+     relaySocket.on("/rms-db", function(data){
+        // console.log(data[0].value);
+        if (visualiser){ visualiser.signal(2,data[0].value); }
+        if (nextVisualiser){ nextVisualiser.signal(2,data[0].value); }
+
+        try {
+            volumeSlider.value = data[0].value;
+        } catch(e){
+
+        }
+    });
+
+    document.body.addEventListener("keyup", function(e){
+
+        if (e.which >= 49 && e.which < 57){
+            crossfadeToIndex(e.which - 49);
+            return;
+        }
+
+        switch(e.which){
+
+            case 68:
+            // press 'd' to toggle between debug & not
+                toggleDebugMode(); 
+            break;
+            case 190:
+                gotoNextVisualiser();
+            break;
+            case 188:
+                gotoPreviousVisualiser();
+            break;
+
+            case 66:
+                beatOnFrame = true;
+            break;
+
+        }
+
     });
 
     // start render cycle (every browser frame)
@@ -96,6 +184,8 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(update, 50);
 
     toggleDebugMode();
+
+
 
 });
 
@@ -113,21 +203,76 @@ function toggleDebugMode(){
     }
 }
 
+function gotoNextVisualiser(){
+    visualiserIndex++;
+    visualiserIndex = visualiserIndex % visualiserLib.length;
+    crossfadeToIndex(visualiserIndex);
+
+}
+
+function gotoPreviousVisualiser(){
+    visualiserIndex--;
+    if (visualiserIndex < 0) { visualiserIndex = visualiserLib.length-1; }
+    crossfadeToIndex(visualiserIndex);
+}
+
+
+function crossfadeToIndex(index){
+    if (isCrossfading) return;
+    if (index >= visualiserLib.length){
+        console.warn("index out of bounds!");
+        return;
+    }
+    console.log("crossfading to " + index);
+    crossfade = 0;
+    isCrossfading = true;
+    nextVisualiser = visualiserLib[index];
+    
+    var tween = new TWEEN.Tween(this).to({ crossfade : 1.0 }, 1000).onUpdate(function(){
+        // crossfade = envelope.value;
+        console.log("crossfade = " + crossfade);
+
+    }).onComplete(function(){
+        crossfade = 0;
+        visualiser = nextVisualiser;
+        nextVisualiser = null;
+        isCrossfading = false;
+    }).start();
+
+
+}
+
 
 function render() {
+
+    TWEEN.update();
 
     // calls the canvases to render
 
     window.requestAnimationFrame(render);
 
     visualiser.render();
+    if (nextVisualiser) nextVisualiser.render();
+
+    tempSideCtx.globalAlpha = 1.0 - crossfade;
+    tempSideCtx.drawImage(visualiser.faces.side,0,0);
+    tempFrontCtx.globalAlpha = 1.0 - crossfade;
+    tempFrontCtx.drawImage(visualiser.faces.front,0,0);
+    
+    if (nextVisualiser){
+        tempSideCtx.globalAlpha = crossfade;
+        tempSideCtx.drawImage(nextVisualiser.faces.side,0,0);
+        tempFrontCtx.globalAlpha = crossfade;
+        tempFrontCtx.drawImage(nextVisualiser.faces.front,0,0);
+    }
+    
 
     if (DEBUG_MODE){
-        fixturesFront.render(visualiser.frontCtx);
-        fixturesSide.render(visualiser.sideCtx);
+        fixturesFront.render(tempFrontCtx);
+        fixturesSide.render(tempSideCtx);
     } else {
-        exportCtx.drawImage(visualiser.faces.side, 0,0);
-        exportCtx.drawImage(visualiser.faces.front, visualiser.faces.side.width,0);
+        exportCtx.drawImage(tempCanvasSide, 0,0);
+        exportCtx.drawImage(tempCanvasFront, visualiser.faces.side.width,0);
     }
 
    

@@ -1,4 +1,5 @@
-var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
+(function(global){
+// var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
 
 	/*
 
@@ -576,4 +577,6 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
 		}
 	};
 
-module.exports = HarpaMSCP004;
+global.HarpaMSCP004 = (global.module || {}).exports = HarpaMSCP004;
+
+})(this);

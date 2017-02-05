@@ -1,9 +1,9 @@
-var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
-//(function(global){
+// var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
+(function(global){
 
-    var HarpaTestVisualiser = function() {};
+    var JonasConnectVisualiser = function() {};
 
-    var p = HarpaTestVisualiser.prototype = new HarpaVisualiserBase();
+    var p = JonasConnectVisualiser.prototype = new HarpaVisualiserBase();
     var s = HarpaVisualiserBase.prototype;
 
     var frame = 0;
@@ -21,13 +21,13 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
         }
     }; 
 
-    Particle = function() {
+    var Particle = function() {
         this.r = 1;
         this.x = Math.random()*combined.width; 
         this.y = Math.random()*combined.height;
         this.dx = 0.1 - Math.random()*0.4;
         this.dy = 0.1 - Math.random()*0.4;
-        this.force = this.r * 7;
+        this.force = this.r * 5;
         this.repulsion = 0.3;
     }
 
@@ -69,7 +69,7 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
                     }
                 }
             }
-        console.log(this.combinedCanvas.width,this.combinedCanvas.height);
+        // console.log(this.combinedCanvas.width,this.combinedCanvas.height);
             if (particles[i].x < 0 || particles[i].x > this.combinedCanvas.width ) particles[i].dx *= -0.8;
             if (particles[i].y < 0 || particles[i].y > this.combinedCanvas.height ) particles[i].dy *= -0.8;
             particles[i].dx -= particles[i].dx/100;
@@ -79,8 +79,8 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
         
     p.particleMove = function() {
         for (i = 0; i < particles.length; i++) {
-            particles[i].x += particles[i].dx;
-            particles[i].y += particles[i].dy;
+            particles[i].x += particles[i].dx * 0.5;
+            particles[i].y += particles[i].dy * 0.5;
         }   
     }
 
@@ -103,21 +103,22 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
             this.combCtx.fill();        
         }
         this.drawToFaces(this.combinedCanvas);
+        this.currentBeatValue *= 0.9;
         frame++;
     }
 
     p.signal = function(channel, value) {
-        if (channel == 1){
+        if (channel == 2){
             this.currentVolume = value;
             currentVolume = this.currentVolume;
         }
-        if (channel == 2){
+        if (channel == 1){
             this.currentBeatValue = value;
             currentBeatValue = this.currentBeatValue;
         }
     }
 
-    global.HarpaTestVisualiser = (global.module || {}).exports = HarpaTestVisualiser;
+    global.JonasConnectVisualiser = (global.module || {}).exports = JonasConnectVisualiser;
 
     /* helpers */
 
@@ -125,5 +126,5 @@ var HarpaVisualiserBase = require("../common/HarpaVisualiserBase.js");
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-//})(this);
-module.exports = HarpaTestVisualiser
+})(this);
+// module.exports = JonasConnectVisualiser

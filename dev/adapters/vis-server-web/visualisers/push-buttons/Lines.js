@@ -1,9 +1,9 @@
-var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
-//(function(global){
+// var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
+(function(global){
 
-    var HarpaTestVisualiser = function() {};
+    var JonasLinesVisualiser = function() {};
 
-    var p = HarpaTestVisualiser.prototype = new HarpaVisualiserBase();
+    var p = JonasLinesVisualiser.prototype = new HarpaVisualiserBase();
     var s = HarpaVisualiserBase.prototype;
 
     var frame = 0;
@@ -31,7 +31,7 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
         }
     }
 
-    Particle = function(width,height,direction,face){
+    var Particle = function(width,height,direction,face){
         this.x = 0;
         this.y = 0;
         switch (direction){
@@ -114,17 +114,17 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
     }
 
     p.signal = function(channel, value){
-        if (channel == 1){
+        if (channel == 2){
             this.currentVolume = value;
             currentVolume = this.currentVolume;
         }
-        if (channel == 2){
+        if (channel == 1){
             this.currentBeatValue = value;
             currentBeatValue = this.currentBeatValue;
         }
     }
 
-    global.HarpaTestVisualiser = (global.module || {}).exports = HarpaTestVisualiser;
+    global.JonasLinesVisualiser = (global.module || {}).exports = JonasLinesVisualiser;
 
     /* helpers */
 
@@ -132,5 +132,5 @@ var HarpaVisualiserBase = require("../../common/HarpaVisualiserBase.js");
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-//})(this);
-module.exports = HarpaTestVisualiser
+})(this);
+// module.exports = JonasLinesVisualiser
