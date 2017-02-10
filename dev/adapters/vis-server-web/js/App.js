@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     exportCanvas = document.getElementById("export");
     exportCtx= exportCanvas.getContext("2d");
+    exportCanvas.imageSmoothingEnabled = false;
 
     // this is the number of lights we have to play with on both sides.
     // small, I know.
