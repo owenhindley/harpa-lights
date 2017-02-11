@@ -11,6 +11,8 @@
   "dependencies": {
     "dgram": "1.0.1",
     "osc-min": "1.1.1",
-    "socket.io": "1.7.2"
+    "socket.io": "1.7.2",
+    "socket.io-client": "1.7.2",
+    "ws": "2.0.3"
   }
 }
