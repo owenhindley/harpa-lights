@@ -11,3 +11,6 @@ visualiser-videos/
 node_modules
 /visualiser-videos
 /dev/visualiser-server/node_modules-old
+/assets/.DS_Store
+/dev/.DS_Store
+/dev/attic/.DS_Store
