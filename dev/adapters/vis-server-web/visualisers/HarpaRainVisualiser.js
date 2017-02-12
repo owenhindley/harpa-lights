@@ -104,13 +104,13 @@
 
     p.signal = function(channel, value) {
 
-        // store volume values from channel 1
-        if (channel == 1){
-            this.currentVolume = value;
+        // store volume values from channel 2
+        if (channel == 2){
+            this.currentVolume = value * 50.0;
         }
 
-        // store beat values from channel 2
-        if (channel == 2){
+        // store beat values from channel 1
+        if (channel == 1){
             this.currentBeatValue = value;
         }
     };

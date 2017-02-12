@@ -16,6 +16,7 @@ var tempCanvasFront, tempFrontCtx;
 var updateIntervalId = -1;
 
 var visualiserLib = [
+    new HarpaKinectWalker(),
     new BeatLineVisualiser(),
     new HarpaMSCP004(),
     new HarpaRainVisualiser(),
@@ -231,7 +232,7 @@ function crossfadeToIndex(index){
     
     var tween = new TWEEN.Tween(this).to({ crossfade : 1.0 }, 1000).onUpdate(function(){
         // crossfade = envelope.value;
-        console.log("crossfade = " + crossfade);
+        // console.log("crossfade = " + crossfade);
 
     }).onComplete(function(){
         crossfade = 0;
